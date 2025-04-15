@@ -1,6 +1,6 @@
 <?php
 
-namespace Supaflow\SupabaseAuth\Listeners;
+namespace EunusCTG\SupabaseAuth\Listeners;
 
 use Flarum\Api\Event\Serializing;
 use Flarum\Api\Serializer\ForumSerializer;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Supaflow\SupabaseAuth\Providers;
+namespace EunusCTG\SupabaseAuth\Providers;
 
 use Flarum\Foundation\AbstractServiceProvider;
 use Flarum\Http\Middleware\AuthenticateWithSession;
@@ -8,9 +8,9 @@ use Flarum\Http\Middleware\CheckCsrfToken;
 use Flarum\Http\RouteCollection;
 use Flarum\Http\RouteHandlerFactory;
 use Illuminate\Contracts\Container\Container;
-use Supaflow\SupabaseAuth\Api\Controllers\Supabase2FASetupController;
-use Supaflow\SupabaseAuth\Api\Controllers\Supabase2FAVerifyController;
-use Supaflow\SupabaseAuth\Middleware\Supabase2FAMiddleware;
+use EunusCTG\SupabaseAuth\Api\Controllers\Supabase2FASetupController;
+use EunusCTG\SupabaseAuth\Api\Controllers\Supabase2FAVerifyController;
+use EunusCTG\SupabaseAuth\Middleware\Supabase2FAMiddleware;
 
 /**
  * Service provider for Supabase 2FA.

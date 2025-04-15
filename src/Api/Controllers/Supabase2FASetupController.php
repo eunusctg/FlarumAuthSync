@@ -1,6 +1,6 @@
 <?php
 
-namespace Supaflow\SupabaseAuth\Api\Controllers;
+namespace EunusCTG\SupabaseAuth\Api\Controllers;
 
 use Flarum\Api\Controller\AbstractShowController;
 use Flarum\Http\RequestUtil;

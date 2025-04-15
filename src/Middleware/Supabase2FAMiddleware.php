@@ -1,6 +1,6 @@
 <?php
 
-namespace Supaflow\SupabaseAuth\Middleware;
+namespace EunusCTG\SupabaseAuth\Middleware;
 
 use Flarum\Http\RequestUtil;
 use Flarum\Settings\SettingsRepositoryInterface;

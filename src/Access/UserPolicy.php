@@ -1,6 +1,6 @@
 <?php
 
-namespace ForumEZ\SupabaseAuth\Access;
+namespace EunusCTG\SupabaseAuth\Access;
 
 use Flarum\User\Access\AbstractPolicy;
 use Flarum\User\User;

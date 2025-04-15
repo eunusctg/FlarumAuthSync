@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of ForumEZ/supabase-auth.
+ * This file is part of eunusctg/supabase-auth.
  *
- * Copyright (c) 2025 ForumEZ Team.
+ * Copyright (c) 2025 Eunus CTG.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,18 +12,18 @@
 use Flarum\Api\Serializer\UserSerializer;
 use Flarum\Extend;
 use Flarum\Frontend\Document;
-use ForumEZ\SupabaseAuth\Api\Controllers\SupabaseAuthController;
-use ForumEZ\SupabaseAuth\Api\Controllers\SupabaseConfigController;
-use ForumEZ\SupabaseAuth\Api\Controllers\SupabaseSocialLoginController;
-use ForumEZ\SupabaseAuth\Api\Controllers\Supabase2FASetupController;
-use ForumEZ\SupabaseAuth\Api\Controllers\Supabase2FAVerifyController;
-use ForumEZ\SupabaseAuth\Api\Controllers\SupabaseUserSyncController;
-use ForumEZ\SupabaseAuth\Listeners\AddClientSettings;
-use ForumEZ\SupabaseAuth\Listeners\SyncUserWithSupabase;
-use ForumEZ\SupabaseAuth\Listeners\SyncUserAvatarWithSupabase;
-use ForumEZ\SupabaseAuth\Middleware\Supabase2FAMiddleware;
-use ForumEZ\SupabaseAuth\Providers\SupabaseUserProvider;
-use ForumEZ\SupabaseAuth\Providers\Supabase2FAProvider;
+use EunusCTG\SupabaseAuth\Api\Controllers\SupabaseAuthController;
+use EunusCTG\SupabaseAuth\Api\Controllers\SupabaseConfigController;
+use EunusCTG\SupabaseAuth\Api\Controllers\SupabaseSocialLoginController;
+use EunusCTG\SupabaseAuth\Api\Controllers\Supabase2FASetupController;
+use EunusCTG\SupabaseAuth\Api\Controllers\Supabase2FAVerifyController;
+use EunusCTG\SupabaseAuth\Api\Controllers\SupabaseUserSyncController;
+use EunusCTG\SupabaseAuth\Listeners\AddClientSettings;
+use EunusCTG\SupabaseAuth\Listeners\SyncUserWithSupabase;
+use EunusCTG\SupabaseAuth\Listeners\SyncUserAvatarWithSupabase;
+use EunusCTG\SupabaseAuth\Middleware\Supabase2FAMiddleware;
+use EunusCTG\SupabaseAuth\Providers\SupabaseUserProvider;
+use EunusCTG\SupabaseAuth\Providers\Supabase2FAProvider;
 
 return [
     (new Extend\Frontend('forum'))

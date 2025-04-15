@@ -1,6 +1,6 @@
 <?php
 
-namespace Supaflow\SupabaseAuth\Listeners;
+namespace EunusCTG\SupabaseAuth\Listeners;
 
 use Flarum\User\Event\AvatarChanged;
 use Flarum\Settings\SettingsRepositoryInterface;

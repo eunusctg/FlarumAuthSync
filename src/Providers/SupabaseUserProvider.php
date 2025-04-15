@@ -1,14 +1,14 @@
 <?php
 
-namespace ForumEZ\SupabaseAuth\Providers;
+namespace EunusCTG\SupabaseAuth\Providers;
 
 use Flarum\Foundation\AbstractServiceProvider;
 use Flarum\Http\RouteCollection;
 use Flarum\Http\RouteHandlerFactory;
 use Illuminate\Contracts\Container\Container;
-use ForumEZ\SupabaseAuth\Api\Controllers\SupabaseAuthController;
-use ForumEZ\SupabaseAuth\Api\Controllers\SupabaseSocialLoginController;
-use ForumEZ\SupabaseAuth\Api\Controllers\SupabaseUserSyncController;
+use EunusCTG\SupabaseAuth\Api\Controllers\SupabaseAuthController;
+use EunusCTG\SupabaseAuth\Api\Controllers\SupabaseSocialLoginController;
+use EunusCTG\SupabaseAuth\Api\Controllers\SupabaseUserSyncController;
 
 /**
  * Service provider for Supabase authentication.
