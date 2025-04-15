@@ -12,7 +12,7 @@ echo '<li>Easy configuration via the admin interface</li>';
 echo '</ul>';
 echo '<h2>Installation</h2>';
 echo '<p>This extension can be installed via Composer:</p>';
-echo '<pre>composer require yourname/flarum-ext-supabase-auth</pre>';
+echo '<pre>composer require forumez/supabase-auth</pre>';
 
 // PHP info for debugging
 phpinfo();
