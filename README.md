@@ -1,8 +1,8 @@
-# Supabase Authentication for Flarum
+# ForumEZ Supabase Authentication for Flarum
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Latest Stable Version](https://img.shields.io/packagist/v/forumez/flarum-ext-supabase-auth.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Latest Stable Version](https://img.shields.io/packagist/v/forumez/supabase-auth.svg)
 
-A comprehensive Supabase authentication integration for Flarum with social login capabilities, user role synchronization, enhanced security features, and user migration tools.
+A comprehensive Supabase authentication integration for Flarum with advanced social login capabilities, user role synchronization, enhanced security features, and a modern, visually stunning admin interface.
 
 ## Features
 
@@ -36,10 +36,17 @@ A comprehensive Supabase authentication integration for Flarum with social login
 - **Provider Selection**: Choose which social login providers to enable
 - **Advanced Settings**: Fine-tune synchronization and security settings
 
+### Advanced Social Login Customization
+- **Multiple Display Modes**: Choose between buttons, icons, or dropdown menu for social login
+- **Visual Customization**: Customize colors, icons, gradients, and animations for each provider
+- **Priority Ordering**: Set display order for social login providers
+- **Per-Provider Settings**: Customize display name, visibility, and appearance for each provider
+- **Live Preview**: See how social login buttons will appear to users in real-time
+
 ## Installation
 
 ```bash
-composer require forumez/flarum-ext-supabase-auth
+composer require forumez/supabase-auth
 ```
 
 ## Configuration
@@ -59,14 +66,19 @@ composer require forumez/flarum-ext-supabase-auth
 2. Go to Extensions → Supabase Authentication
 3. Enter your Supabase project URL and API keys
 4. Configure desired social login providers
-5. Set up security settings (2FA, etc.)
-6. Save settings
+5. Customize the appearance of social login buttons:
+   - Select display mode (buttons, icons, or dropdown)
+   - Customize colors, gradients, and animations
+   - Set display priority for providers
+   - Customize individual provider settings (names, icons, visibility)
+6. Set up security settings (2FA, etc.)
+7. Save settings
 
 ## User Guide
 
 ### Social Login
 
-Users can log in using any of the enabled social providers by clicking the corresponding button on the login modal.
+Users can log in using any of the enabled social providers by clicking the corresponding button, icon, or dropdown option in the login modal. The appearance and behavior of these social login options can be fully customized by the administrator.
 
 ### Two-Factor Authentication
 
@@ -110,7 +122,7 @@ The extension is designed to be extendable through Flarum's extension system. Yo
 ### Getting Help
 
 If you encounter any issues, please:
-1. Check the [GitHub Issues](https://github.com/forumez/flarum-ext-supabase-auth/issues) page
+1. Check the [GitHub Issues](https://github.com/forumez/supabase-auth/issues) page
 2. Create a new issue with detailed information if yours isn't already reported
 
 ## License

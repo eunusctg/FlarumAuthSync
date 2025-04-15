@@ -1,12 +1,43 @@
-/vendor
-/node_modules
-/js/dist
+# Composer dependencies
+/vendor/
+composer.phar
+
+# Node modules and build files
+/node_modules/
+/js/dist/
+npm-debug.log
+yarn-error.log
+.yarn/
+.npm/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE and OS specific files
+.idea/
+.vscode/
 .DS_Store
 Thumbs.db
-*.sublime-project
-*.sublime-workspace
-.idea
-.vscode
-/composer.lock
-/package-lock.json
+
+# Cache and temporary files
+cache/
+/tmp/
+*.cache
 *.log
+*.bak
+*.swp
+*~
+
+# Build artifacts
+/build/
+/dist/
+/.phpunit.result.cache
+
+# Flarum specific files
+/public/assets/
+/storage/
+
+# Miscellaneous
+.phpunit.result.cache
