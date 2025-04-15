@@ -1,0 +1,48 @@
+{
+    "name": "yourname/flarum-ext-supabase-auth",
+    "description": "Supabase authentication integration for Flarum",
+    "type": "flarum-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "your.email@example.com"
+        }
+    ],
+    "require": {
+        "flarum/core": "^1.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "YourName\\SupabaseAuth\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Supabase Authentication",
+            "icon": {
+                "name": "fas fa-sign-in-alt",
+                "backgroundColor": "#3ECF8E",
+                "color": "#ffffff"
+            }
+        },
+        "flarum-cli": {
+            "modules": {
+                "admin": true,
+                "forum": true,
+                "js": true,
+                "jsCommon": false,
+                "css": true,
+                "locale": true,
+                "gitConf": true,
+                "githubActions": false,
+                "prettier": false,
+                "typescript": false,
+                "bundlewatch": false,
+                "backendTesting": false,
+                "editorConfig": true,
+                "styleci": false
+            }
+        }
+    }
+}

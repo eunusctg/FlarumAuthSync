@@ -1,0 +1,31 @@
+yourname-supabase-auth:
+  admin:
+    settings:
+      docs_title: "Supabase Integration Documentation"
+      docs_text: "Follow these steps to integrate Supabase authentication with your Flarum forum:"
+      docs_step1: "Create a Supabase project at https://supabase.io"
+      docs_step2: "Configure the authentication settings in your Supabase project"
+      docs_step3: "Copy your project URL and API keys to the fields above"
+      
+      public_url_label: "Supabase Project URL"
+      public_url_help: "The URL of your Supabase project (e.g., https://yourproject.supabase.co)"
+      
+      public_key_label: "Supabase Public API Key"
+      public_key_help: "The public (anon) API key from your Supabase project"
+      
+      private_key_label: "Supabase Service Role Key"
+      private_key_help: "The service_role key from your Supabase project (keep this secret!)"
+      
+      sync_avatar_label: "Sync User Avatars"
+      sync_avatar_help: "Automatically sync user avatars from Supabase user profiles"
+    
+    permissions:
+      use_supabase_auth_label: "Allow login with Supabase"
+  
+  forum:
+    log_in:
+      with_supabase_button: "Login with Supabase"
+    sign_up:
+      with_supabase_button: "Sign Up with Supabase"
+    errors:
+      not_configured: "Supabase authentication is not configured properly"

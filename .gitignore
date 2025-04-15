@@ -1,0 +1,12 @@
+/vendor
+/node_modules
+/js/dist
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+.idea
+.vscode
+/composer.lock
+/package-lock.json
+*.log
