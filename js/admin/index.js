@@ -1,15 +1,15 @@
 import app from 'flarum/app';
 import SupabaseSettingsPage from './components/SupabaseSettingsPage';
 
-app.initializers.add('forumez-supabase-auth', () => {
+app.initializers.add('forumez-supabase', () => {
   // Register the settings page for the extension
   app.extensionData
-    .for('forumez-supabase-auth')
+    .for('forumez-supabase')
     .registerPage(SupabaseSettingsPage);
     
   // Add translation keys
   app.translator.addTranslations({
-    'forumez-supabase-auth': {
+    'forumez-supabase': {
       'admin': {
         'settings': {
           // API Section

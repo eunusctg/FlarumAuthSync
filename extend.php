@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of ForumEZ/flarum-ext-supabase-auth.
+ * This file is part of ForumEZ/supabase-auth.
  *
  * Copyright (c) 2025 ForumEZ Team.
  *

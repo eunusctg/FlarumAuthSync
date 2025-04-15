@@ -69,7 +69,7 @@ export default class ProviderCustomizationModal extends Modal {
   }
   
   title() {
-    return app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.title', {provider: this.provider.name});
+    return app.translator.trans('forumez-supabase.admin.settings.provider_customization.title', {provider: this.provider.name});
   }
   
   content() {
@@ -78,7 +78,7 @@ export default class ProviderCustomizationModal extends Modal {
         <div className="Form">
           {/* Display Name */}
           <div className="Form-group">
-            <label>{app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.display_name')}</label>
+            <label>{app.translator.trans('forumez-supabase.admin.settings.provider_customization.display_name')}</label>
             <input 
               className="FormControl" 
               type="text" 
@@ -88,12 +88,12 @@ export default class ProviderCustomizationModal extends Modal {
                 m.redraw();
               }} 
             />
-            <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.display_name_help')}</p>
+            <p className="helpText">{app.translator.trans('forumez-supabase.admin.settings.provider_customization.display_name_help')}</p>
           </div>
           
           {/* Icon Selection */}
           <div className="Form-group">
-            <label>{app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.icon')}</label>
+            <label>{app.translator.trans('forumez-supabase.admin.settings.provider_customization.icon')}</label>
             <div className="iconSelect">
               <select 
                 className="FormControl"
@@ -137,14 +137,14 @@ export default class ProviderCustomizationModal extends Modal {
                     m.redraw();
                   }} 
                 />
-                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.custom_icon_help')}</p>
+                <p className="helpText">{app.translator.trans('forumez-supabase.admin.settings.provider_customization.custom_icon_help')}</p>
               </div>
             )}
           </div>
           
           {/* Button Colors */}
           <div className="Form-group">
-            <label>{app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.button_color')}</label>
+            <label>{app.translator.trans('forumez-supabase.admin.settings.provider_customization.button_color')}</label>
             <div className="colorPickerGroup">
               <input 
                 type="color" 
@@ -165,7 +165,7 @@ export default class ProviderCustomizationModal extends Modal {
               />
             </div>
             
-            <label>{app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.button_text_color')}</label>
+            <label>{app.translator.trans('forumez-supabase.admin.settings.provider_customization.button_text_color')}</label>
             <div className="colorPickerGroup">
               <input 
                 type="color" 
@@ -189,7 +189,7 @@ export default class ProviderCustomizationModal extends Modal {
           
           {/* Button Preview */}
           <div className="Form-group">
-            <label>{app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.button_preview')}</label>
+            <label>{app.translator.trans('forumez-supabase.admin.settings.provider_customization.button_preview')}</label>
             <div className="buttonPreview">
               <Button 
                 className="Button" 
@@ -200,7 +200,7 @@ export default class ProviderCustomizationModal extends Modal {
               >
                 {icon(this.editedConfig.icon, {className: 'Button-icon'})}
                 <span className="Button-label">
-                  {app.translator.trans('forumez-supabase-auth.forum.login_with_provider', {provider: this.editedConfig.display_name})}
+                  {app.translator.trans('forumez-supabase.forum.login_with_provider', {provider: this.editedConfig.display_name})}
                 </span>
               </Button>
             </div>
@@ -215,7 +215,7 @@ export default class ProviderCustomizationModal extends Modal {
                 m.redraw();
               }}
             >
-              {app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.show_on_login')}
+              {app.translator.trans('forumez-supabase.admin.settings.provider_customization.show_on_login')}
             </Switch>
             
             <Switch 
@@ -225,13 +225,13 @@ export default class ProviderCustomizationModal extends Modal {
                 m.redraw();
               }}
             >
-              {app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.show_on_signup')}
+              {app.translator.trans('forumez-supabase.admin.settings.provider_customization.show_on_signup')}
             </Switch>
           </div>
           
           {/* Priority */}
           <div className="Form-group">
-            <label>{app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.priority')}</label>
+            <label>{app.translator.trans('forumez-supabase.admin.settings.provider_customization.priority')}</label>
             <input 
               className="FormControl" 
               type="number" 
@@ -241,20 +241,20 @@ export default class ProviderCustomizationModal extends Modal {
                 m.redraw();
               }} 
             />
-            <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.priority_help')}</p>
+            <p className="helpText">{app.translator.trans('forumez-supabase.admin.settings.provider_customization.priority_help')}</p>
           </div>
           
           {/* Reset Button */}
           <div className="Form-group">
             <Button className="Button Button--danger" onclick={this.resetToDefaults.bind(this)}>
-              {app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.reset_defaults')}
+              {app.translator.trans('forumez-supabase.admin.settings.provider_customization.reset_defaults')}
             </Button>
           </div>
           
           {/* Save Button */}
           <div className="Form-group">
             <Button className="Button Button--primary" onclick={this.saveChanges.bind(this)}>
-              {app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.save')}
+              {app.translator.trans('forumez-supabase.admin.settings.provider_customization.save')}
             </Button>
           </div>
         </div>

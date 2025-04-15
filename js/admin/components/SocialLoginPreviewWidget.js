@@ -42,9 +42,9 @@ export default class SocialLoginPreviewWidget extends Component {
     
     // Display modes
     this.displayModes = [
-      { value: 'buttons', label: app.translator.trans('forumez-supabase-auth.admin.settings.display_options.buttons_mode') },
-      { value: 'icons', label: app.translator.trans('forumez-supabase-auth.admin.settings.display_options.icons_mode') },
-      { value: 'dropdown', label: app.translator.trans('forumez-supabase-auth.admin.settings.display_options.dropdown_mode') }
+      { value: 'buttons', label: app.translator.trans('forumez-supabase.admin.settings.display_options.buttons_mode') },
+      { value: 'icons', label: app.translator.trans('forumez-supabase.admin.settings.display_options.icons_mode') },
+      { value: 'dropdown', label: app.translator.trans('forumez-supabase.admin.settings.display_options.dropdown_mode') }
     ];
     
     // Get the display mode from settings
@@ -80,13 +80,13 @@ export default class SocialLoginPreviewWidget extends Component {
     return (
       <div className="SocialLoginPreviewWidget">
         <div className="SocialLoginPreviewWidget-header">
-          <h3>{app.translator.trans('forumez-supabase-auth.admin.settings.preview_widget.title')}</h3>
-          <p className="description">{app.translator.trans('forumez-supabase-auth.admin.settings.preview_widget.description')}</p>
+          <h3>{app.translator.trans('forumez-supabase.admin.settings.preview_widget.title')}</h3>
+          <p className="description">{app.translator.trans('forumez-supabase.admin.settings.preview_widget.description')}</p>
         </div>
         
         <div className="SocialLoginPreviewWidget-options">
           <div className="Form-group">
-            <label>{app.translator.trans('forumez-supabase-auth.admin.settings.display_options.title')}</label>
+            <label>{app.translator.trans('forumez-supabase.admin.settings.display_options.title')}</label>
             <div className="ButtonGroup">
               {this.displayModes.map(mode => (
                 <Button 
@@ -100,7 +100,7 @@ export default class SocialLoginPreviewWidget extends Component {
           </div>
           
           <div className="Form-group">
-            <label>{app.translator.trans('forumez-supabase-auth.admin.settings.display_options.separator_text')}</label>
+            <label>{app.translator.trans('forumez-supabase.admin.settings.display_options.separator_text')}</label>
             <input 
               className="FormControl"
               type="text"
@@ -114,27 +114,27 @@ export default class SocialLoginPreviewWidget extends Component {
               state={this.autoDetectColors}
               onchange={value => this.setAutoDetectColors(value)}
             >
-              {app.translator.trans('forumez-supabase-auth.admin.settings.display_options.auto_detect_colors')}
+              {app.translator.trans('forumez-supabase.admin.settings.display_options.auto_detect_colors')}
             </Switch>
             
             <Switch 
               state={this.animateButtons}
               onchange={value => this.setAnimateButtons(value)}
             >
-              {app.translator.trans('forumez-supabase-auth.admin.settings.display_options.animate_buttons')}
+              {app.translator.trans('forumez-supabase.admin.settings.display_options.animate_buttons')}
             </Switch>
             
             <Switch 
               state={this.useColorGradients}
               onchange={value => this.setUseColorGradients(value)}
             >
-              {app.translator.trans('forumez-supabase-auth.admin.settings.display_options.use_color_gradients')}
+              {app.translator.trans('forumez-supabase.admin.settings.display_options.use_color_gradients')}
             </Switch>
           </div>
         </div>
         
         <div className="SocialLoginPreviewWidget-customization">
-          <h4>{app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.manage_providers')}</h4>
+          <h4>{app.translator.trans('forumez-supabase.admin.settings.provider_customization.manage_providers')}</h4>
           <div className="SocialLoginPreviewWidget-providers-list">
             {Object.keys(this.socialProviders).map(providerId => {
               const isEnabled = enabledProviders.includes(providerId);
@@ -156,7 +156,7 @@ export default class SocialLoginPreviewWidget extends Component {
                         className="Button Button--icon" 
                         onclick={() => this.openCustomizationModal(provider)}
                         icon="fas fa-cog"
-                        title={app.translator.trans('forumez-supabase-auth.admin.settings.provider_customization.customize')}
+                        title={app.translator.trans('forumez-supabase.admin.settings.provider_customization.customize')}
                       />
                     )}
                   </div>
@@ -168,7 +168,7 @@ export default class SocialLoginPreviewWidget extends Component {
         
         <div className="SocialLoginPreviewWidget-container">
           <div className="SocialLoginPreviewWidget-preview-box">
-            <h4>{app.translator.trans('forumez-supabase-auth.admin.settings.preview_widget.login_preview')}</h4>
+            <h4>{app.translator.trans('forumez-supabase.admin.settings.preview_widget.login_preview')}</h4>
             
             {/* Separator with text */}
             <div className="SocialLoginPreviewWidget-separator">
@@ -202,7 +202,7 @@ export default class SocialLoginPreviewWidget extends Component {
           </div>
           
           <div className="SocialLoginPreviewWidget-preview-box">
-            <h4>{app.translator.trans('forumez-supabase-auth.admin.settings.preview_widget.signup_preview')}</h4>
+            <h4>{app.translator.trans('forumez-supabase.admin.settings.preview_widget.signup_preview')}</h4>
             
             {/* Separator with text */}
             <div className="SocialLoginPreviewWidget-separator">
@@ -368,8 +368,8 @@ export default class SocialLoginPreviewWidget extends Component {
       
       // Button text depends on login/signup mode
       const buttonText = isSignup
-        ? app.translator.trans('forumez-supabase-auth.forum.signup_with_provider', {provider: displayName})
-        : app.translator.trans('forumez-supabase-auth.forum.login_with_provider', {provider: displayName});
+        ? app.translator.trans('forumez-supabase.forum.signup_with_provider', {provider: displayName})
+        : app.translator.trans('forumez-supabase.forum.login_with_provider', {provider: displayName});
       
       // Style with gradients if enabled
       let buttonStyle = {
@@ -432,8 +432,8 @@ export default class SocialLoginPreviewWidget extends Component {
       
       // Title depends on login/signup mode
       const title = isSignup
-        ? app.translator.trans('forumez-supabase-auth.forum.signup_with_provider', {provider: displayName})
-        : app.translator.trans('forumez-supabase-auth.forum.login_with_provider', {provider: displayName});
+        ? app.translator.trans('forumez-supabase.forum.signup_with_provider', {provider: displayName})
+        : app.translator.trans('forumez-supabase.forum.login_with_provider', {provider: displayName});
       
       return (
         <Button
@@ -461,8 +461,8 @@ export default class SocialLoginPreviewWidget extends Component {
     }
     
     const buttonTitle = isSignup
-      ? app.translator.trans('forumez-supabase-auth.forum.sign_up_with')
-      : app.translator.trans('forumez-supabase-auth.forum.login_with');
+      ? app.translator.trans('forumez-supabase.forum.sign_up_with')
+      : app.translator.trans('forumez-supabase.forum.login_with');
     
     return (
       <Dropdown
@@ -502,7 +502,7 @@ export default class SocialLoginPreviewWidget extends Component {
    * Display a preview alert when a social button is clicked
    */
   previewAlert() {
-    alert(app.translator.trans('forumez-supabase-auth.admin.settings.preview_widget.button_click_message'));
+    alert(app.translator.trans('forumez-supabase.admin.settings.preview_widget.button_click_message'));
   }
   
   /**

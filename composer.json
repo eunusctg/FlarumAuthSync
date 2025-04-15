@@ -1,5 +1,5 @@
 {
-    "name": "forumez/flarum-ext-supabase-auth",
+    "name": "forumez/supabase-auth",
     "description": "Enhanced Supabase authentication integration for Flarum with social login, 2FA and profile synchronization",
     "type": "flarum-extension",
     "license": "MIT",
@@ -12,11 +12,11 @@
         "2fa",
         "two-factor-authentication"
     ],
-    "homepage": "https://github.com/forumez/flarum-ext-supabase-auth",
+    "homepage": "https://github.com/forumez/supabase-auth",
     "support": {
-        "issues": "https://github.com/forumez/flarum-ext-supabase-auth/issues",
-        "source": "https://github.com/forumez/flarum-ext-supabase-auth",
-        "docs": "https://github.com/forumez/flarum-ext-supabase-auth/wiki"
+        "issues": "https://github.com/forumez/supabase-auth/issues",
+        "source": "https://github.com/forumez/supabase-auth",
+        "docs": "https://github.com/forumez/supabase-auth/wiki"
     },
     "authors": [
         {

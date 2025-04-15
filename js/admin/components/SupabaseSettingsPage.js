@@ -61,11 +61,11 @@ export default class SupabaseSettingsPage extends ExtensionPage {
           <form onsubmit={this.onsubmit.bind(this)}>
             {/* Supabase API Settings */}
             <div className="Form-section">
-              <h3>{app.translator.trans('forumez-supabase-auth.admin.settings.api_section_title')}</h3>
-              <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.api_section_description')}</p>
+              <h3>{app.translator.trans('forumez-supabase.admin.settings.api_section_title')}</h3>
+              <p className="helpText">{app.translator.trans('forumez-supabase.admin.settings.api_section_description')}</p>
               
               <div className="Form-group">
-                <label>{app.translator.trans('forumez-supabase-auth.admin.settings.public_url_label')}</label>
+                <label>{app.translator.trans('forumez-supabase.admin.settings.public_url_label')}</label>
                 <input 
                   className="FormControl" 
                   value={this.settings['supabase.publicUrl']} 
@@ -75,11 +75,11 @@ export default class SupabaseSettingsPage extends ExtensionPage {
                   }}
                   placeholder="https://your-project.supabase.co"
                 />
-                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.public_url_description')}</p>
+                <p className="helpText">{app.translator.trans('forumez-supabase.admin.settings.public_url_description')}</p>
               </div>
               
               <div className="Form-group">
-                <label>{app.translator.trans('forumez-supabase-auth.admin.settings.public_key_label')}</label>
+                <label>{app.translator.trans('forumez-supabase.admin.settings.public_key_label')}</label>
                 <input 
                   className="FormControl" 
                   value={this.settings['supabase.publicKey']}
@@ -89,11 +89,11 @@ export default class SupabaseSettingsPage extends ExtensionPage {
                   }}
                   placeholder="eyJ0eXA..."
                 />
-                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.public_key_description')}</p>
+                <p className="helpText">{app.translator.trans('forumez-supabase.admin.settings.public_key_description')}</p>
               </div>
               
               <div className="Form-group">
-                <label>{app.translator.trans('forumez-supabase-auth.admin.settings.private_key_label')}</label>
+                <label>{app.translator.trans('forumez-supabase.admin.settings.private_key_label')}</label>
                 <input 
                   className="FormControl" 
                   type="password"
@@ -104,7 +104,7 @@ export default class SupabaseSettingsPage extends ExtensionPage {
                   }}
                   placeholder="eyJ0eXA..."
                 />
-                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.private_key_description')}</p>
+                <p className="helpText">{app.translator.trans('forumez-supabase.admin.settings.private_key_description')}</p>
               </div>
               
               <Button 
@@ -113,7 +113,7 @@ export default class SupabaseSettingsPage extends ExtensionPage {
                 loading={this.testingConnection}
                 disabled={!this.settings['supabase.publicUrl'] || !this.settings['supabase.publicKey'] || !this.settings['supabase.privateKey']}
               >
-                {app.translator.trans('forumez-supabase-auth.admin.settings.test_connection_button')}
+                {app.translator.trans('forumez-supabase.admin.settings.test_connection_button')}
               </Button>
               
               {this.connectionStatus && (
@@ -125,11 +125,11 @@ export default class SupabaseSettingsPage extends ExtensionPage {
             
             {/* Social Providers Settings */}
             <div className="Form-section">
-              <h3>{app.translator.trans('forumez-supabase-auth.admin.settings.social_providers_section_title')}</h3>
-              <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.social_providers_description')}</p>
+              <h3>{app.translator.trans('forumez-supabase.admin.settings.social_providers_section_title')}</h3>
+              <p className="helpText">{app.translator.trans('forumez-supabase.admin.settings.social_providers_description')}</p>
               
               <div className="Form-group">
-                <label>{app.translator.trans('forumez-supabase-auth.admin.settings.enabled_providers_label')}</label>
+                <label>{app.translator.trans('forumez-supabase.admin.settings.enabled_providers_label')}</label>
                 <div className="providerSelect">
                   {this.availableSocialProviders.map(provider => (
                     <div 
@@ -141,7 +141,7 @@ export default class SupabaseSettingsPage extends ExtensionPage {
                     </div>
                   ))}
                 </div>
-                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.enabled_providers_help')}</p>
+                <p className="helpText">{app.translator.trans('forumez-supabase.admin.settings.enabled_providers_help')}</p>
               </div>
               
               {/* Social Login Preview Widget */}
@@ -153,7 +153,7 @@ export default class SupabaseSettingsPage extends ExtensionPage {
             
             {/* Security & Sync Settings */}
             <div className="Form-section">
-              <h3>{app.translator.trans('forumez-supabase-auth.admin.settings.security_sync_section_title')}</h3>
+              <h3>{app.translator.trans('forumez-supabase.admin.settings.security_sync_section_title')}</h3>
               
               <div className="Form-group">
                 <Switch 
@@ -163,9 +163,9 @@ export default class SupabaseSettingsPage extends ExtensionPage {
                     m.redraw();
                   }}
                 >
-                  {app.translator.trans('forumez-supabase-auth.admin.settings.enable_2fa_label')}
+                  {app.translator.trans('forumez-supabase.admin.settings.enable_2fa_label')}
                 </Switch>
-                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.enable_2fa_help')}</p>
+                <p className="helpText">{app.translator.trans('forumez-supabase.admin.settings.enable_2fa_help')}</p>
               </div>
               
               {this.settings['supabase.enable2FA'] && (
@@ -177,9 +177,9 @@ export default class SupabaseSettingsPage extends ExtensionPage {
                       m.redraw();
                     }}
                   >
-                    {app.translator.trans('forumez-supabase-auth.admin.settings.require_2fa_label')}
+                    {app.translator.trans('forumez-supabase.admin.settings.require_2fa_label')}
                   </Switch>
-                  <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.require_2fa_help')}</p>
+                  <p className="helpText">{app.translator.trans('forumez-supabase.admin.settings.require_2fa_help')}</p>
                 </div>
               )}
               
@@ -191,9 +191,9 @@ export default class SupabaseSettingsPage extends ExtensionPage {
                     m.redraw();
                   }}
                 >
-                  {app.translator.trans('forumez-supabase-auth.admin.settings.sync_avatar_label')}
+                  {app.translator.trans('forumez-supabase.admin.settings.sync_avatar_label')}
                 </Switch>
-                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.sync_avatar_help')}</p>
+                <p className="helpText">{app.translator.trans('forumez-supabase.admin.settings.sync_avatar_help')}</p>
               </div>
               
               <div className="Form-group">
@@ -204,13 +204,13 @@ export default class SupabaseSettingsPage extends ExtensionPage {
                     m.redraw();
                   }}
                 >
-                  {app.translator.trans('forumez-supabase-auth.admin.settings.sync_metadata_label')}
+                  {app.translator.trans('forumez-supabase.admin.settings.sync_metadata_label')}
                 </Switch>
-                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.sync_metadata_help')}</p>
+                <p className="helpText">{app.translator.trans('forumez-supabase.admin.settings.sync_metadata_help')}</p>
               </div>
               
               <div className="Form-group">
-                <label>{app.translator.trans('forumez-supabase-auth.admin.settings.avatar_bucket_label')}</label>
+                <label>{app.translator.trans('forumez-supabase.admin.settings.avatar_bucket_label')}</label>
                 <input 
                   className="FormControl" 
                   value={this.settings['supabase.avatarBucket']}
@@ -220,7 +220,7 @@ export default class SupabaseSettingsPage extends ExtensionPage {
                   }}
                   placeholder="avatars"
                 />
-                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.avatar_bucket_help')}</p>
+                <p className="helpText">{app.translator.trans('forumez-supabase.admin.settings.avatar_bucket_help')}</p>
               </div>
             </div>
             
@@ -418,7 +418,7 @@ export default class SupabaseSettingsPage extends ExtensionPage {
         this.saving = false;
         
         // Show error alert
-        app.alerts.show({ type: 'error' }, app.translator.trans('forumez-supabase-auth.admin.settings.save_error', {error: err.message || 'Unknown error'}));
+        app.alerts.show({ type: 'error' }, app.translator.trans('forumez-supabase.admin.settings.save_error', {error: err.message || 'Unknown error'}));
       });
   }
 }
