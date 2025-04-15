@@ -1,6 +1,6 @@
 # Supabase Authentication for Flarum
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Latest Stable Version](https://img.shields.io/packagist/v/supaflow/flarum-ext-supabase-auth.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Latest Stable Version](https://img.shields.io/packagist/v/forumez/flarum-ext-supabase-auth.svg)
 
 A comprehensive Supabase authentication integration for Flarum with social login capabilities, user role synchronization, enhanced security features, and user migration tools.
 
@@ -39,7 +39,7 @@ A comprehensive Supabase authentication integration for Flarum with social login
 ## Installation
 
 ```bash
-composer require supaflow/flarum-ext-supabase-auth
+composer require forumez/flarum-ext-supabase-auth
 ```
 
 ## Configuration
@@ -110,7 +110,7 @@ The extension is designed to be extendable through Flarum's extension system. Yo
 ### Getting Help
 
 If you encounter any issues, please:
-1. Check the [GitHub Issues](https://github.com/supaflow/flarum-ext-supabase-auth/issues) page
+1. Check the [GitHub Issues](https://github.com/forumez/flarum-ext-supabase-auth/issues) page
 2. Create a new issue with detailed information if yours isn't already reported
 
 ## License
@@ -119,4 +119,4 @@ This extension is licensed under the MIT License. See the [LICENSE](LICENSE) fil
 
 ## Credits
 
-Developed by the Supaflow Team.
+Developed by the ForumEZ Team.

@@ -1,14 +1,14 @@
 <?php
 
-namespace Supaflow\SupabaseAuth\Providers;
+namespace ForumEZ\SupabaseAuth\Providers;
 
 use Flarum\Foundation\AbstractServiceProvider;
 use Flarum\Http\RouteCollection;
 use Flarum\Http\RouteHandlerFactory;
 use Illuminate\Contracts\Container\Container;
-use Supaflow\SupabaseAuth\Api\Controllers\SupabaseAuthController;
-use Supaflow\SupabaseAuth\Api\Controllers\SupabaseSocialLoginController;
-use Supaflow\SupabaseAuth\Api\Controllers\SupabaseUserSyncController;
+use ForumEZ\SupabaseAuth\Api\Controllers\SupabaseAuthController;
+use ForumEZ\SupabaseAuth\Api\Controllers\SupabaseSocialLoginController;
+use ForumEZ\SupabaseAuth\Api\Controllers\SupabaseUserSyncController;
 
 /**
  * Service provider for Supabase authentication.

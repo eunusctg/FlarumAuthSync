@@ -1,5 +1,5 @@
 {
-    "name": "supaflow/flarum-ext-supabase-auth",
+    "name": "forumez/flarum-ext-supabase-auth",
     "description": "Enhanced Supabase authentication integration for Flarum with social login, 2FA and profile synchronization",
     "type": "flarum-extension",
     "license": "MIT",
@@ -12,17 +12,17 @@
         "2fa",
         "two-factor-authentication"
     ],
-    "homepage": "https://github.com/supaflow/flarum-ext-supabase-auth",
+    "homepage": "https://github.com/forumez/flarum-ext-supabase-auth",
     "support": {
-        "issues": "https://github.com/supaflow/flarum-ext-supabase-auth/issues",
-        "source": "https://github.com/supaflow/flarum-ext-supabase-auth",
-        "docs": "https://github.com/supaflow/flarum-ext-supabase-auth/wiki"
+        "issues": "https://github.com/forumez/flarum-ext-supabase-auth/issues",
+        "source": "https://github.com/forumez/flarum-ext-supabase-auth",
+        "docs": "https://github.com/forumez/flarum-ext-supabase-auth/wiki"
     },
     "authors": [
         {
-            "name": "Supaflow Team",
-            "email": "support@supaflow.dev",
-            "homepage": "https://supaflow.dev",
+            "name": "ForumEZ Team",
+            "email": "support@forumez.com",
+            "homepage": "https://forumez.com",
             "role": "Developer"
         }
     ],
@@ -35,7 +35,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Supaflow\\SupabaseAuth\\": "src/"
+            "ForumEZ\\SupabaseAuth\\": "src/"
         }
     },
     "extra": {
@@ -44,7 +44,7 @@
             "category": "authentication",
             "icon": {
                 "name": "fas fa-sign-in-alt",
-                "backgroundColor": "#3ECF8E",
+                "backgroundColor": "#0066CC",
                 "color": "#ffffff"
             },
             "assets": {

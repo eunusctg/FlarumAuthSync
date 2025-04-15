@@ -1,308 +1,202 @@
-// Supabase Auth - Forum Styles
-@supabase-primary: #3ECF8E;
-@supabase-secondary: #4263EB;
-@supabase-dark: #1F1F1F;
-@supabase-light: #F8F9FA;
+// Forum styles for ForumEZ Supabase Auth extension
 
-.SupabaseAuth {
-  margin: 1.5rem 0;
-  
-  .SupabaseAuth-emailButton {
-    background-color: @supabase-primary;
-    border-color: @supabase-primary;
-    transition: all 0.2s ease;
-    
-    &:hover, &:focus {
-      background-color: darken(@supabase-primary, 5%);
-      border-color: darken(@supabase-primary, 5%);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-  }
-  
-  .SupabaseAuth-socialDivider {
+// Social login button styling
+.LogInButton, .SignUpButton {
+  .Button--social {
     display: flex;
     align-items: center;
-    text-align: center;
-    margin: 1.5rem 0;
-    
-    &:before, &:after {
-      content: '';
-      flex: 1;
-      border-bottom: 1px solid #ddd;
-    }
-    
-    span {
-      padding: 0 10px;
-      color: #777;
-      font-size: 0.9rem;
-    }
-  }
-  
-  .SupabaseAuth-socialButtons {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 0.75rem;
-    
-    .Button {
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8px 15px;
-      font-weight: 500;
-      
-      i {
-        margin-right: 8px;
-        font-size: 1.1rem;
-      }
-      
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-      }
-    }
-  }
-}
-
-// 2FA Setup Page
-.Supabase2FAPage {
-  max-width: 800px;
-  margin: 0 auto;
-  
-  .Supabase2FAPage-header {
-    margin-bottom: 2rem;
-    
-    h2 {
-      border-left: 4px solid @supabase-primary;
-      padding-left: 15px;
-      margin-bottom: 0.75rem;
-    }
-    
-    p {
-      color: #777;
-    }
-  }
-  
-  .Supabase2FAPage-content {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-    padding: 2rem;
-    margin-bottom: 2rem;
-  }
-  
-  .Supabase2FAPage-error {
-    margin-bottom: 1.5rem;
-  }
-  
-  .Supabase2FAPage-alert {
-    margin-bottom: 1.5rem;
-  }
-  
-  .Supabase2FASetup {
-    .Supabase2FASetup-steps {
-      .Supabase2FASetup-step {
-        margin-bottom: 2rem;
-        padding-bottom: 2rem;
-        border-bottom: 1px solid #eee;
-        
-        &:last-child {
-          border-bottom: none;
-          margin-bottom: 0;
-          padding-bottom: 0;
-        }
-        
-        h3 {
-          color: @supabase-dark;
-          margin-bottom: 1rem;
-          font-size: 1.1rem;
-          display: flex;
-          align-items: center;
-        }
-      }
-      
-      .Supabase2FASetup-qrCode {
-        text-align: center;
-        margin: 1rem 0;
-        padding: 1rem;
-        border: 2px dashed #ddd;
-        border-radius: 8px;
-        
-        img {
-          max-width: 200px;
-        }
-      }
-      
-      .Supabase2FASetup-secretKey {
-        display: flex;
-        align-items: center;
-        background-color: @supabase-light;
-        border-radius: 4px;
-        padding: 0.75rem;
-        margin: 1rem 0;
-        
-        code {
-          flex: 1;
-          background: none;
-          padding: 0;
-          font-family: monospace;
-          letter-spacing: 0.1em;
-        }
-        
-        .Button {
-          margin-left: 8px;
-          color: #666;
-          
-          &:hover {
-            color: @supabase-secondary;
-          }
-        }
-      }
-      
-      .Supabase2FASetup-verify {
-        .FormControl {
-          text-align: center;
-          font-size: 1.2rem;
-          letter-spacing: 0.2em;
-          margin-bottom: 1rem;
-        }
-      }
-    }
-    
-    .Supabase2FASetup-help {
-      background-color: #f9f9f9;
-      border-left: 4px solid #eee;
-      padding: 1rem 1.5rem;
-      margin-top: 1.5rem;
-      border-radius: 4px;
-      
-      h4 {
-        color: #666;
-        margin-bottom: 0.5rem;
-      }
-      
-      ul {
-        margin: 0;
-        padding-left: 1.5rem;
-        
-        li {
-          margin-bottom: 0.5rem;
-        }
-      }
-    }
-  }
-  
-  .Supabase2FAVerify {
-    max-width: 350px;
-    margin: 0 auto;
-    
-    .FormControl {
-      text-align: center;
-      font-size: 1.5rem;
-      letter-spacing: 0.3em;
-      margin-bottom: 1.5rem;
-    }
-    
-    .Button {
-      width: 100%;
-    }
-  }
-  
-  .Supabase2FAVerify-help {
-    max-width: 500px;
-    margin: 2rem auto 0;
-    background-color: #f9f9f9;
-    border-left: 4px solid #eee;
-    padding: 1rem 1.5rem;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px 15px;
     border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    text-align: left;
+    font-weight: normal;
+    color: #fff;
     
-    h4 {
-      color: #666;
-      margin-bottom: 0.5rem;
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     
-    ul {
-      margin: 0;
-      padding-left: 1.5rem;
-      
-      li {
-        margin-bottom: 0.5rem;
-        color: #777;
-      }
+    &:active {
+      transform: translateY(0);
     }
+    
+    .Button-icon {
+      margin-right: 10px;
+    }
+    
+    .Button-label {
+      flex-grow: 1;
+    }
+  }
+  
+  // Provider-specific button styles
+  .Button--github { background-color: #24292e; }
+  .Button--github:hover { background-color: #000000; }
+  
+  .Button--google { background-color: #4285F4; }
+  .Button--google:hover { background-color: #3367d6; }
+  
+  .Button--facebook { background-color: #1877F2; }
+  .Button--facebook:hover { background-color: #0b5fcc; }
+  
+  .Button--twitter { background-color: #1DA1F2; }
+  .Button--twitter:hover { background-color: #0c85d0; }
+  
+  .Button--discord { background-color: #5865F2; }
+  .Button--discord:hover { background-color: #4752c4; }
+  
+  .Button--apple { background-color: #000000; }
+  .Button--apple:hover { background-color: #333333; }
+  
+  .Button--linkedin { background-color: #0A66C2; }
+  .Button--linkedin:hover { background-color: #084e96; }
+  
+  .Button--slack { background-color: #4A154B; }
+  .Button--slack:hover { background-color: #2f0e30; }
+  
+  .Button--spotify { background-color: #1DB954; }
+  .Button--spotify:hover { background-color: #169c46; }
+  
+  .Button--twitch { background-color: #9146FF; }
+  .Button--twitch:hover { background-color: #7b38d8; }
+}
+
+// Separator
+.LogInModal-separator, .SignUpModal-separator {
+  position: relative;
+  margin: 20px 0;
+  text-align: center;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #e8e8e8;
+  }
+  
+  span {
+    position: relative;
+    padding: 0 10px;
+    background-color: #fff;
+    color: #888;
+    font-size: 14px;
   }
 }
 
-// Supabase Callback Page
-.SupabaseCallbackPage {
+// 2FA Setup page
+.Supabase2FASetupPage {
   max-width: 600px;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 20px;
   
-  .SupabaseCallbackPage-content {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-    padding: 2rem;
+  .qrcode-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+    
+    img {
+      max-width: 200px;
+      margin-bottom: 20px;
+    }
+  }
+  
+  .secret-key {
+    font-family: monospace;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    word-break: break-all;
     text-align: center;
   }
   
-  .SupabaseCallbackPage-loading {
-    padding: 2rem 0;
+  .verification-form {
+    margin-top: 20px;
+  }
+  
+  .Button--primary {
+    background-color: #0066CC;
     
-    p {
-      margin-top: 1rem;
-      color: #666;
+    &:hover, &:focus {
+      background-color: #0055AA;
     }
-  }
-  
-  .SupabaseCallbackPage-error {
-    .Button {
-      margin-top: 1rem;
-    }
-  }
-  
-  .SupabaseCallbackPage-success {
-    padding: 1rem 0;
   }
 }
 
-// Social accounts in settings
-.SupabaseSocialAccounts {
-  margin-bottom: 1rem;
+// 2FA Verify page
+.Supabase2FAVerifyPage {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
   
-  .SupabaseSocialAccounts-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0 0 1rem 0;
+  .verification-form {
+    margin-top: 20px;
+  }
+  
+  .Button--primary {
+    background-color: #0066CC;
     
-    .SupabaseSocialAccounts-provider {
+    &:hover, &:focus {
+      background-color: #0055AA;
+    }
+  }
+}
+
+// Social connection management
+.SupabaseConnectionsSettings {
+  .connected-providers {
+    margin: 15px 0;
+    
+    .provider-item {
       display: flex;
       align-items: center;
-      padding: 0.75rem;
-      background-color: #f9f9f9;
+      justify-content: space-between;
+      padding: 10px;
+      border: 1px solid #e8e8e8;
       border-radius: 4px;
-      margin-bottom: 0.5rem;
+      margin-bottom: 10px;
       
-      i {
-        font-size: 1.2rem;
-        margin-right: 10px;
-        width: 20px;
-        text-align: center;
+      &-info {
+        display: flex;
+        align-items: center;
+        
+        .icon {
+          margin-right: 10px;
+          width: 24px;
+          text-align: center;
+        }
+        
+        .provider-name {
+          font-weight: bold;
+        }
       }
       
-      span {
-        flex: 1;
+      .disconnect-button {
+        color: #d32f2f;
+        cursor: pointer;
+        
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
   
-  .SupabaseSocialAccounts-empty {
-    padding: 1rem;
-    background-color: #f9f9f9;
-    border-radius: 4px;
-    color: #777;
+  .no-providers {
+    padding: 15px;
+    color: #888;
     text-align: center;
+    border: 1px dashed #ddd;
+    border-radius: 4px;
   }
 }

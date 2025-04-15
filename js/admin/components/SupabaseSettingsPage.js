@@ -1,320 +1,399 @@
+import app from 'flarum/app';
 import ExtensionPage from 'flarum/components/ExtensionPage';
-import Switch from 'flarum/components/Switch';
 import Button from 'flarum/components/Button';
+import Switch from 'flarum/components/Switch';
 import Select from 'flarum/components/Select';
-import saveSettings from 'flarum/utils/saveSettings';
-import Alert from 'flarum/components/Alert';
 import LoadingIndicator from 'flarum/components/LoadingIndicator';
+import saveSettings from 'flarum/utils/saveSettings';
+import icon from 'flarum/common/helpers/icon';
+import SocialLoginPreviewWidget from './SocialLoginPreviewWidget';
 
+/**
+ * The Settings page for the ForumEZ Supabase Auth extension.
+ */
 export default class SupabaseSettingsPage extends ExtensionPage {
   oninit(vnode) {
     super.oninit(vnode);
 
     this.loading = false;
     this.testingConnection = false;
-    this.connectionSuccessful = null;
+    this.connectionStatus = null;
     
-    this.publicUrl = this.setting('supabase.publicUrl')();
-    this.publicKey = this.setting('supabase.publicKey')();
-    this.privateKey = this.setting('supabase.privateKey')();
-    this.enable2FA = this.setting('supabase.enable2FA')() === '1';
-    this.require2FA = this.setting('supabase.require2FA')() === '1';
-    this.syncAvatar = this.setting('supabase.syncAvatar')() === '1';
-    this.syncUserMetadata = this.setting('supabase.syncUserMetadata')() === '1';
-    this.socialProviders = this.setting('supabase.socialProviders')() || '["github"]';
-    this.avatarBucket = this.setting('supabase.avatarBucket')() || 'avatars';
-    
-    this.providerOptions = {
-      '["github"]': 'GitHub Only',
-      '["github", "google"]': 'GitHub and Google',
-      '["github", "google", "facebook"]': 'GitHub, Google, and Facebook',
-      '["github", "google", "facebook", "twitter"]': 'GitHub, Google, Facebook, and Twitter',
-      '["github", "google", "facebook", "twitter", "discord"]': 'GitHub, Google, Facebook, Twitter, and Discord',
-      '["github", "google", "facebook", "twitter", "discord", "apple"]': 'All Major Providers'
+    // Initialize settings with default values
+    this.settings = {
+      'supabase.publicUrl': '',
+      'supabase.publicKey': '',
+      'supabase.privateKey': '',
+      'supabase.enable2FA': false,
+      'supabase.require2FA': false,
+      'supabase.syncAvatar': true,
+      'supabase.syncUserMetadata': true,
+      'supabase.socialProviders': ['github'],
+      'supabase.avatarBucket': 'avatars'
     };
+    
+    // Available social providers with their icons
+    this.availableSocialProviders = [
+      { id: 'github', name: 'GitHub', icon: 'fab fa-github' },
+      { id: 'google', name: 'Google', icon: 'fab fa-google' },
+      { id: 'facebook', name: 'Facebook', icon: 'fab fa-facebook-f' },
+      { id: 'twitter', name: 'Twitter', icon: 'fab fa-twitter' },
+      { id: 'discord', name: 'Discord', icon: 'fab fa-discord' },
+      { id: 'apple', name: 'Apple', icon: 'fab fa-apple' },
+      { id: 'linkedin', name: 'LinkedIn', icon: 'fab fa-linkedin-in' },
+      { id: 'slack', name: 'Slack', icon: 'fab fa-slack' },
+      { id: 'spotify', name: 'Spotify', icon: 'fab fa-spotify' },
+      { id: 'twitch', name: 'Twitch', icon: 'fab fa-twitch' }
+    ];
+    
+    // Load current settings from the database
+    this.loadSettings();
   }
 
   content() {
-    const providers = JSON.parse(this.socialProviders);
-    const providerIcons = {
-      github: { icon: 'fab fa-github', color: '#333' },
-      google: { icon: 'fab fa-google', color: '#4285F4' },
-      facebook: { icon: 'fab fa-facebook', color: '#3b5998' },
-      twitter: { icon: 'fab fa-twitter', color: '#1DA1F2' },
-      discord: { icon: 'fab fa-discord', color: '#7289DA' },
-      apple: { icon: 'fab fa-apple', color: '#000' }
-    };
-    
+    if (this.loading) {
+      return <LoadingIndicator />;
+    }
+
     return (
       <div className="SupabaseSettingsPage">
         <div className="container">
-          <div className="SupabaseSettingsPage-header">
-            <h2>Supabase Authentication Settings</h2>
-            <div className="SupabaseSettingsPage-logo">
-              <img src="https://supabase.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsupabase-logo-wordmark--dark.d17ca6e9.png&w=256&q=75" 
-                   alt="Supabase" 
-                   height="30" />
-            </div>
-          </div>
-
-          <div className="SupabaseSettingsPage-settings">
-            <div className="Form-group">
-              <div className="SupabaseSettingsPage-section">
-                <div className="SupabaseSettingsPage-sectionHeader">
-                  <h3><i className="fas fa-key"></i> API Credentials</h3>
-                  <p>Connect your Flarum forum to Supabase by entering your project credentials below.</p>
-                </div>
+          <form onsubmit={this.onsubmit.bind(this)}>
+            {/* Supabase API Settings */}
+            <div className="Form-section">
+              <h3>{app.translator.trans('forumez-supabase-auth.admin.settings.api_section_title')}</h3>
+              <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.api_section_description')}</p>
               
-                <div className="Form-group">
-                  <label>Project URL</label>
-                  <input 
-                    className="FormControl" 
-                    value={this.publicUrl} 
-                    onChange={e => this.publicUrl = e.target.value}
-                    placeholder="https://your-project.supabase.co" 
-                  />
-                  <div className="helpText">
-                    The URL of your Supabase project (e.g., https://your-project.supabase.co)
-                  </div>
-                </div>
-                
-                <div className="Form-group">
-                  <label>Public API Key</label>
-                  <input 
-                    className="FormControl" 
-                    value={this.publicKey} 
-                    onChange={e => this.publicKey = e.target.value}
-                    placeholder="your-public-anon-key" 
-                  />
-                  <div className="helpText">
-                    The public (anon) API key from your Supabase project settings
-                  </div>
-                </div>
-                
-                <div className="Form-group">
-                  <label>Service Role Key (Private)</label>
-                  <input 
-                    className="FormControl" 
-                    type="password"
-                    value={this.privateKey} 
-                    onChange={e => this.privateKey = e.target.value}
-                    placeholder="your-service-role-key" 
-                  />
-                  <div className="helpText">
-                    The service role API key from your Supabase project settings (kept private)
-                  </div>
-                </div>
-                
-                <div className="Form-group">
-                  <Button 
-                    className="Button Button--primary" 
-                    loading={this.testingConnection}
-                    disabled={!this.publicUrl || !this.publicKey || !this.privateKey || this.testingConnection}
-                    onclick={() => this.testConnection()}
-                  >
-                    Test Connection
-                  </Button>
-                  
-                  {this.connectionSuccessful !== null && (
-                    <div className={`SupabaseConnectionStatus ${this.connectionSuccessful ? 'success' : 'error'}`}>
-                      {this.connectionSuccessful 
-                        ? <><i className="fas fa-check-circle"></i> Connection successful!</>
-                        : <><i className="fas fa-times-circle"></i> Connection failed. Please check your credentials.</>
-                      }
-                    </div>
-                  )}
-                </div>
+              <div className="Form-group">
+                <label>{app.translator.trans('forumez-supabase-auth.admin.settings.public_url_label')}</label>
+                <input 
+                  className="FormControl" 
+                  value={this.settings['supabase.publicUrl']} 
+                  oninput={e => {
+                    this.settings['supabase.publicUrl'] = e.target.value;
+                    m.redraw();
+                  }}
+                  placeholder="https://your-project.supabase.co"
+                />
+                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.public_url_description')}</p>
               </div>
-            </div>
-            
-            <div className="Form-group">
-              <div className="SupabaseSettingsPage-section">
-                <div className="SupabaseSettingsPage-sectionHeader">
-                  <h3><i className="fas fa-users"></i> Authentication Options</h3>
-                  <p>Configure how users can authenticate with your forum.</p>
-                </div>
-                
-                <div className="Form-group">
-                  <label>Social Login Providers</label>
-                  <Select 
-                    options={this.providerOptions}
-                    value={this.socialProviders}
-                    onchange={value => this.socialProviders = value}
-                  />
-                  <div className="helpText">
-                    Select which social login providers to enable for your users
-                  </div>
-                  
-                  <div className="SupabaseProviderPreview">
-                    <h4>Preview:</h4>
-                    <div className="SupabaseProviderPreview-buttons">
-                      {providers.map(provider => (
-                        <div 
-                          className="SupabaseProviderPreview-button"
-                          style={{ backgroundColor: providerIcons[provider]?.color || '#666' }}
-                        >
-                          <i className={providerIcons[provider]?.icon || 'fas fa-external-link-alt'}></i>
-                          <span>{provider}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+              
+              <div className="Form-group">
+                <label>{app.translator.trans('forumez-supabase-auth.admin.settings.public_key_label')}</label>
+                <input 
+                  className="FormControl" 
+                  value={this.settings['supabase.publicKey']}
+                  oninput={e => {
+                    this.settings['supabase.publicKey'] = e.target.value;
+                    m.redraw();
+                  }}
+                  placeholder="eyJ0eXA..."
+                />
+                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.public_key_description')}</p>
               </div>
-            </div>
-            
-            <div className="Form-group">
-              <div className="SupabaseSettingsPage-section">
-                <div className="SupabaseSettingsPage-sectionHeader">
-                  <h3><i className="fas fa-shield-alt"></i> Security Features</h3>
-                  <p>Enhance your forum's security with these advanced features.</p>
-                </div>
-                
-                <div className="Form-group">
-                  <Switch 
-                    state={this.enable2FA} 
-                    onchange={value => this.enable2FA = value}
-                  >
-                    Enable Two-Factor Authentication (2FA)
-                  </Switch>
-                  <div className="helpText">
-                    Allow users to secure their accounts with 2FA using authenticator apps
-                  </div>
-                </div>
-                
-                <div className="Form-group">
-                  <Switch 
-                    state={this.require2FA} 
-                    onchange={value => this.require2FA = value}
-                    disabled={!this.enable2FA}
-                  >
-                    Require 2FA for Sensitive Operations
-                  </Switch>
-                  <div className="helpText">
-                    Require 2FA verification for sensitive operations like changing email or password
-                  </div>
-                </div>
+              
+              <div className="Form-group">
+                <label>{app.translator.trans('forumez-supabase-auth.admin.settings.private_key_label')}</label>
+                <input 
+                  className="FormControl" 
+                  type="password"
+                  value={this.settings['supabase.privateKey']}
+                  oninput={e => {
+                    this.settings['supabase.privateKey'] = e.target.value;
+                    m.redraw();
+                  }}
+                  placeholder="eyJ0eXA..."
+                />
+                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.private_key_description')}</p>
               </div>
-            </div>
-            
-            <div className="Form-group">
-              <div className="SupabaseSettingsPage-section">
-                <div className="SupabaseSettingsPage-sectionHeader">
-                  <h3><i className="fas fa-sync-alt"></i> User Synchronization</h3>
-                  <p>Configure how user data synchronizes between Flarum and Supabase.</p>
-                </div>
-                
-                <div className="Form-group">
-                  <Switch 
-                    state={this.syncAvatar} 
-                    onchange={value => this.syncAvatar = value}
-                  >
-                    Sync User Avatars
-                  </Switch>
-                  <div className="helpText">
-                    Automatically sync user avatars between Flarum and Supabase
-                  </div>
-                </div>
-                
-                <div className="Form-group">
-                  <Switch 
-                    state={this.syncUserMetadata} 
-                    onchange={value => this.syncUserMetadata = value}
-                  >
-                    Sync User Metadata
-                  </Switch>
-                  <div className="helpText">
-                    Sync additional user metadata between Flarum and Supabase
-                  </div>
-                </div>
-                
-                <div className="Form-group">
-                  <label>Avatar Storage Bucket</label>
-                  <input 
-                    className="FormControl" 
-                    value={this.avatarBucket} 
-                    onChange={e => this.avatarBucket = e.target.value}
-                    placeholder="avatars" 
-                    disabled={!this.syncAvatar}
-                  />
-                  <div className="helpText">
-                    Name of the Supabase storage bucket where user avatars will be stored
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="Form-group">
-              {this.loading ? (
-                <div className="SupabaseSettingsPage-loading">
-                  <LoadingIndicator />
-                </div>
-              ) : (
-                <div className="SupabaseSettingsPage-footer">
-                  <Button 
-                    className="Button Button--primary" 
-                    type="submit" 
-                    onclick={e => this.onsubmit(e)}
-                  >
-                    Save Settings
-                  </Button>
+              
+              <Button 
+                className="Button Button--primary testConnectionButton" 
+                onclick={this.testConnection.bind(this)}
+                loading={this.testingConnection}
+                disabled={!this.settings['supabase.publicUrl'] || !this.settings['supabase.publicKey'] || !this.settings['supabase.privateKey']}
+              >
+                {app.translator.trans('forumez-supabase-auth.admin.settings.test_connection_button')}
+              </Button>
+              
+              {this.connectionStatus && (
+                <div className={`connectionStatus ${this.connectionStatus.success ? 'success' : 'error'}`}>
+                  {this.connectionStatus.message}
                 </div>
               )}
             </div>
-          </div>
+            
+            {/* Social Providers Settings */}
+            <div className="Form-section">
+              <h3>{app.translator.trans('forumez-supabase-auth.admin.settings.social_providers_section_title')}</h3>
+              <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.social_providers_description')}</p>
+              
+              <div className="Form-group">
+                <label>{app.translator.trans('forumez-supabase-auth.admin.settings.enabled_providers_label')}</label>
+                <div className="providerSelect">
+                  {this.availableSocialProviders.map(provider => (
+                    <div 
+                      className={`providerOption ${this.isProviderSelected(provider.id) ? 'selected' : ''}`}
+                      onclick={() => this.toggleProvider(provider.id)}
+                    >
+                      {icon(provider.icon, {className: 'icon'})}
+                      <span>{provider.name}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.enabled_providers_help')}</p>
+              </div>
+              
+              {/* Social Login Preview Widget */}
+              <SocialLoginPreviewWidget />
+            </div>
+            
+            {/* Security & Sync Settings */}
+            <div className="Form-section">
+              <h3>{app.translator.trans('forumez-supabase-auth.admin.settings.security_sync_section_title')}</h3>
+              
+              <div className="Form-group">
+                <Switch 
+                  state={this.settings['supabase.enable2FA']}
+                  onchange={value => {
+                    this.settings['supabase.enable2FA'] = value;
+                    m.redraw();
+                  }}
+                >
+                  {app.translator.trans('forumez-supabase-auth.admin.settings.enable_2fa_label')}
+                </Switch>
+                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.enable_2fa_help')}</p>
+              </div>
+              
+              {this.settings['supabase.enable2FA'] && (
+                <div className="Form-group">
+                  <Switch 
+                    state={this.settings['supabase.require2FA']}
+                    onchange={value => {
+                      this.settings['supabase.require2FA'] = value;
+                      m.redraw();
+                    }}
+                  >
+                    {app.translator.trans('forumez-supabase-auth.admin.settings.require_2fa_label')}
+                  </Switch>
+                  <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.require_2fa_help')}</p>
+                </div>
+              )}
+              
+              <div className="Form-group">
+                <Switch 
+                  state={this.settings['supabase.syncAvatar']}
+                  onchange={value => {
+                    this.settings['supabase.syncAvatar'] = value;
+                    m.redraw();
+                  }}
+                >
+                  {app.translator.trans('forumez-supabase-auth.admin.settings.sync_avatar_label')}
+                </Switch>
+                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.sync_avatar_help')}</p>
+              </div>
+              
+              <div className="Form-group">
+                <Switch 
+                  state={this.settings['supabase.syncUserMetadata']}
+                  onchange={value => {
+                    this.settings['supabase.syncUserMetadata'] = value;
+                    m.redraw();
+                  }}
+                >
+                  {app.translator.trans('forumez-supabase-auth.admin.settings.sync_metadata_label')}
+                </Switch>
+                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.sync_metadata_help')}</p>
+              </div>
+              
+              <div className="Form-group">
+                <label>{app.translator.trans('forumez-supabase-auth.admin.settings.avatar_bucket_label')}</label>
+                <input 
+                  className="FormControl" 
+                  value={this.settings['supabase.avatarBucket']}
+                  oninput={e => {
+                    this.settings['supabase.avatarBucket'] = e.target.value;
+                    m.redraw();
+                  }}
+                  placeholder="avatars"
+                />
+                <p className="helpText">{app.translator.trans('forumez-supabase-auth.admin.settings.avatar_bucket_help')}</p>
+              </div>
+            </div>
+            
+            {/* Submit Button */}
+            <div className="Form-group">
+              {this.submitButton()}
+            </div>
+          </form>
         </div>
       </div>
     );
   }
 
+  /**
+   * Test the Supabase connection
+   */
   testConnection() {
     this.testingConnection = true;
-    this.connectionSuccessful = null;
-    m.redraw();
+    this.connectionStatus = null;
     
-    // Make an API request to test the connection
-    app.request({
-      method: 'POST',
-      url: app.forum.attribute('apiUrl') + '/supabase/test-connection',
-      body: {
-        url: this.publicUrl,
-        publicKey: this.publicKey,
-        privateKey: this.privateKey
-      }
-    }).then(response => {
-      this.connectionSuccessful = true;
-    }).catch(error => {
-      this.connectionSuccessful = false;
-      console.error('Supabase connection test failed:', error);
-    }).finally(() => {
-      this.testingConnection = false;
-      m.redraw();
-    });
+    app
+      .request({
+        method: 'POST',
+        url: app.forum.attribute('apiUrl') + '/supabase/test-connection',
+        body: {
+          action: 'test',
+          url: this.settings['supabase.publicUrl'],
+          publicKey: this.settings['supabase.publicKey'],
+          privateKey: this.settings['supabase.privateKey']
+        }
+      })
+      .then(response => {
+        this.connectionStatus = {
+          success: response.success,
+          message: response.message
+        };
+        
+        this.testingConnection = false;
+        m.redraw();
+      })
+      .catch(error => {
+        this.connectionStatus = {
+          success: false,
+          message: error.message || 'Unknown error occurred'
+        };
+        
+        this.testingConnection = false;
+        m.redraw();
+      });
   }
 
+  /**
+   * Load settings from database
+   */
+  loadSettings() {
+    this.loading = true;
+    
+    // Load settings from the database
+    const dbSettings = app.data.settings;
+    
+    if (dbSettings['supabase.publicUrl']) {
+      this.settings['supabase.publicUrl'] = dbSettings['supabase.publicUrl'];
+    }
+    
+    if (dbSettings['supabase.publicKey']) {
+      this.settings['supabase.publicKey'] = dbSettings['supabase.publicKey'];
+    }
+    
+    if (dbSettings['supabase.privateKey']) {
+      this.settings['supabase.privateKey'] = dbSettings['supabase.privateKey'];
+    }
+    
+    if (dbSettings['supabase.enable2FA'] !== undefined) {
+      this.settings['supabase.enable2FA'] = dbSettings['supabase.enable2FA'] === '1';
+    }
+    
+    if (dbSettings['supabase.require2FA'] !== undefined) {
+      this.settings['supabase.require2FA'] = dbSettings['supabase.require2FA'] === '1';
+    }
+    
+    if (dbSettings['supabase.syncAvatar'] !== undefined) {
+      this.settings['supabase.syncAvatar'] = dbSettings['supabase.syncAvatar'] === '1';
+    }
+    
+    if (dbSettings['supabase.syncUserMetadata'] !== undefined) {
+      this.settings['supabase.syncUserMetadata'] = dbSettings['supabase.syncUserMetadata'] === '1';
+    }
+    
+    if (dbSettings['supabase.avatarBucket']) {
+      this.settings['supabase.avatarBucket'] = dbSettings['supabase.avatarBucket'];
+    }
+    
+    // Load social providers
+    if (dbSettings['supabase.socialProviders']) {
+      try {
+        this.settings['supabase.socialProviders'] = JSON.parse(dbSettings['supabase.socialProviders']);
+      } catch (e) {
+        // If there's an error parsing, use the default
+        this.settings['supabase.socialProviders'] = ['github'];
+      }
+    }
+    
+    this.loading = false;
+    m.redraw();
+  }
+
+  /**
+   * Check if a provider is selected
+   * 
+   * @param {String} providerId
+   * @return {Boolean}
+   */
+  isProviderSelected(providerId) {
+    return this.settings['supabase.socialProviders'].includes(providerId);
+  }
+
+  /**
+   * Toggle provider selection
+   * 
+   * @param {String} providerId
+   */
+  toggleProvider(providerId) {
+    const providers = this.settings['supabase.socialProviders'];
+    
+    if (this.isProviderSelected(providerId)) {
+      // Remove provider if already selected
+      const index = providers.indexOf(providerId);
+      providers.splice(index, 1);
+    } else {
+      // Add provider if not already selected
+      providers.push(providerId);
+    }
+    
+    m.redraw();
+  }
+
+  /**
+   * Save settings when form is submitted
+   * 
+   * @param {Event} e
+   */
   onsubmit(e) {
     e.preventDefault();
     
-    this.loading = true;
+    // Don't submit if already saving
+    if (this.saving) return;
     
-    // Save the settings to the database
-    saveSettings({
-      'supabase.publicUrl': this.publicUrl,
-      'supabase.publicKey': this.publicKey,
-      'supabase.privateKey': this.privateKey,
-      'supabase.enable2FA': this.enable2FA ? '1' : '0',
-      'supabase.require2FA': this.require2FA ? '1' : '0',
-      'supabase.syncAvatar': this.syncAvatar ? '1' : '0',
-      'supabase.syncUserMetadata': this.syncUserMetadata ? '1' : '0',
-      'supabase.socialProviders': this.socialProviders,
-      'supabase.avatarBucket': this.avatarBucket
-    }).then(() => {
-      app.alerts.show({ type: 'success' }, app.translator.trans('core.admin.settings.saved_message'));
-    }).catch(() => {
-      app.alerts.show({ type: 'error' }, app.translator.trans('core.admin.settings.save_error_message'));
-    }).finally(() => {
-      this.loading = false;
-      m.redraw();
-    });
+    // Start saving
+    this.saving = true;
+    
+    // Convert boolean values to strings for database storage
+    const settingsToSave = {
+      'supabase.publicUrl': this.settings['supabase.publicUrl'],
+      'supabase.publicKey': this.settings['supabase.publicKey'],
+      'supabase.privateKey': this.settings['supabase.privateKey'],
+      'supabase.enable2FA': this.settings['supabase.enable2FA'] ? '1' : '0',
+      'supabase.require2FA': this.settings['supabase.require2FA'] ? '1' : '0',
+      'supabase.syncAvatar': this.settings['supabase.syncAvatar'] ? '1' : '0',
+      'supabase.syncUserMetadata': this.settings['supabase.syncUserMetadata'] ? '1' : '0',
+      'supabase.avatarBucket': this.settings['supabase.avatarBucket'],
+      'supabase.socialProviders': JSON.stringify(this.settings['supabase.socialProviders'])
+    };
+    
+    // Save settings to database
+    saveSettings(settingsToSave)
+      .then(() => {
+        this.saving = false;
+        
+        // Show saved alert
+        app.alerts.show({ type: 'success' }, app.translator.trans('core.admin.settings.saved_message'));
+      })
+      .catch(err => {
+        this.saving = false;
+        
+        // Show error alert
+        app.alerts.show({ type: 'error' }, app.translator.trans('forumez-supabase-auth.admin.settings.save_error', {error: err.message || 'Unknown error'}));
+      });
   }
 }

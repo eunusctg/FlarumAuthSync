@@ -1,6 +1,6 @@
 <?php
 
-namespace Supaflow\SupabaseAuth\Access;
+namespace ForumEZ\SupabaseAuth\Access;
 
 use Flarum\User\Access\AbstractPolicy;
 use Flarum\User\User;

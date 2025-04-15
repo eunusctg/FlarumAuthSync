@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of Supaflow/flarum-ext-supabase-auth.
+ * This file is part of ForumEZ/flarum-ext-supabase-auth.
  *
- * Copyright (c) 2025 Supaflow Team.
+ * Copyright (c) 2025 ForumEZ Team.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,18 +12,18 @@
 use Flarum\Api\Serializer\UserSerializer;
 use Flarum\Extend;
 use Flarum\Frontend\Document;
-use Supaflow\SupabaseAuth\Api\Controllers\SupabaseAuthController;
-use Supaflow\SupabaseAuth\Api\Controllers\SupabaseConfigController;
-use Supaflow\SupabaseAuth\Api\Controllers\SupabaseSocialLoginController;
-use Supaflow\SupabaseAuth\Api\Controllers\Supabase2FASetupController;
-use Supaflow\SupabaseAuth\Api\Controllers\Supabase2FAVerifyController;
-use Supaflow\SupabaseAuth\Api\Controllers\SupabaseUserSyncController;
-use Supaflow\SupabaseAuth\Listeners\AddClientSettings;
-use Supaflow\SupabaseAuth\Listeners\SyncUserWithSupabase;
-use Supaflow\SupabaseAuth\Listeners\SyncUserAvatarWithSupabase;
-use Supaflow\SupabaseAuth\Middleware\Supabase2FAMiddleware;
-use Supaflow\SupabaseAuth\Providers\SupabaseUserProvider;
-use Supaflow\SupabaseAuth\Providers\Supabase2FAProvider;
+use ForumEZ\SupabaseAuth\Api\Controllers\SupabaseAuthController;
+use ForumEZ\SupabaseAuth\Api\Controllers\SupabaseConfigController;
+use ForumEZ\SupabaseAuth\Api\Controllers\SupabaseSocialLoginController;
+use ForumEZ\SupabaseAuth\Api\Controllers\Supabase2FASetupController;
+use ForumEZ\SupabaseAuth\Api\Controllers\Supabase2FAVerifyController;
+use ForumEZ\SupabaseAuth\Api\Controllers\SupabaseUserSyncController;
+use ForumEZ\SupabaseAuth\Listeners\AddClientSettings;
+use ForumEZ\SupabaseAuth\Listeners\SyncUserWithSupabase;
+use ForumEZ\SupabaseAuth\Listeners\SyncUserAvatarWithSupabase;
+use ForumEZ\SupabaseAuth\Middleware\Supabase2FAMiddleware;
+use ForumEZ\SupabaseAuth\Providers\SupabaseUserProvider;
+use ForumEZ\SupabaseAuth\Providers\Supabase2FAProvider;
 
 return [
     (new Extend\Frontend('forum'))
@@ -83,5 +83,5 @@ return [
     
     // Register permissions
     (new Extend\Policy())
-        ->modelPolicy(\Flarum\User\User::class, \Supaflow\SupabaseAuth\Access\UserPolicy::class),
+        ->modelPolicy(\Flarum\User\User::class, \ForumEZ\SupabaseAuth\Access\UserPolicy::class),
 ];

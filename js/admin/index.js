@@ -1,123 +1,68 @@
 import app from 'flarum/app';
 import SupabaseSettingsPage from './components/SupabaseSettingsPage';
 
-app.initializers.add('supaflow-supabase-auth', () => {
+app.initializers.add('forumez-supabase-auth', () => {
+  // Register the settings page for the extension
   app.extensionData
-    .for('supaflow-supabase-auth')
-    .registerPermission(
-      {
-        icon: 'fas fa-sign-in-alt',
-        label: app.translator.trans('supaflow-supabase-auth.admin.permissions.use_supabase_auth_label'),
-        permission: 'supabase.login'
-      },
-      'start'
-    )
-    .registerPermission(
-      {
-        icon: 'fas fa-shield-alt',
-        label: app.translator.trans('supaflow-supabase-auth.admin.permissions.require_2fa_label'),
-        permission: 'supabase.require2fa'
-      },
-      'moderate'
-    )
-    .registerPermission(
-      {
-        icon: 'fas fa-users-cog',
-        label: app.translator.trans('supaflow-supabase-auth.admin.permissions.manage_social_providers_label'),
-        permission: 'supabase.manageSocialProviders'
-      },
-      'moderate'
-    )
-    .registerSetting(
-      {
-        setting: 'supabase.publicUrl',
-        name: 'supabase.publicUrl',
-        type: 'text',
-        label: app.translator.trans('supaflow-supabase-auth.admin.settings.public_url_label'),
-        help: app.translator.trans('supaflow-supabase-auth.admin.settings.public_url_help')
-      }
-    )
-    .registerSetting(
-      {
-        setting: 'supabase.publicKey',
-        name: 'supabase.publicKey',
-        type: 'text',
-        label: app.translator.trans('supaflow-supabase-auth.admin.settings.public_key_label'),
-        help: app.translator.trans('supaflow-supabase-auth.admin.settings.public_key_help')
-      }
-    )
-    .registerSetting(
-      {
-        setting: 'supabase.privateKey',
-        name: 'supabase.privateKey',
-        type: 'password',
-        label: app.translator.trans('supaflow-supabase-auth.admin.settings.private_key_label'),
-        help: app.translator.trans('supaflow-supabase-auth.admin.settings.private_key_help')
-      }
-    )
-    .registerSetting(
-      {
-        setting: 'supabase.enable2FA',
-        name: 'supabase.enable2FA',
-        type: 'boolean',
-        label: app.translator.trans('supaflow-supabase-auth.admin.settings.enable_2fa_label'),
-        help: app.translator.trans('supaflow-supabase-auth.admin.settings.enable_2fa_help')
-      }
-    )
-    .registerSetting(
-      {
-        setting: 'supabase.require2FA',
-        name: 'supabase.require2FA',
-        type: 'boolean',
-        label: app.translator.trans('supaflow-supabase-auth.admin.settings.require_2fa_label'),
-        help: app.translator.trans('supaflow-supabase-auth.admin.settings.require_2fa_help')
-      }
-    )
-    .registerSetting(
-      {
-        setting: 'supabase.socialProviders',
-        name: 'supabase.socialProviders',
-        type: 'select',
-        label: app.translator.trans('supaflow-supabase-auth.admin.settings.social_providers_label'),
-        help: app.translator.trans('supaflow-supabase-auth.admin.settings.social_providers_help'),
-        options: {
-          '["github"]': 'GitHub Only',
-          '["github", "google"]': 'GitHub and Google',
-          '["github", "google", "facebook"]': 'GitHub, Google, and Facebook',
-          '["github", "google", "facebook", "twitter"]': 'GitHub, Google, Facebook, and Twitter',
-          '["github", "google", "facebook", "twitter", "discord"]': 'GitHub, Google, Facebook, Twitter, and Discord',
-          '["github", "google", "facebook", "twitter", "discord", "apple"]': 'All Major Providers'
-        },
-        default: '["github"]'
-      }
-    )
-    .registerSetting(
-      {
-        setting: 'supabase.syncAvatar',
-        name: 'supabase.syncAvatar',
-        type: 'boolean',
-        label: app.translator.trans('supaflow-supabase-auth.admin.settings.sync_avatar_label'),
-        help: app.translator.trans('supaflow-supabase-auth.admin.settings.sync_avatar_help')
-      }
-    )
-    .registerSetting(
-      {
-        setting: 'supabase.syncUserMetadata',
-        name: 'supabase.syncUserMetadata',
-        type: 'boolean',
-        label: app.translator.trans('supaflow-supabase-auth.admin.settings.sync_user_metadata_label'),
-        help: app.translator.trans('supaflow-supabase-auth.admin.settings.sync_user_metadata_help')
-      }
-    )
-    .registerSetting(
-      {
-        setting: 'supabase.avatarBucket',
-        name: 'supabase.avatarBucket',
-        type: 'text',
-        label: app.translator.trans('supaflow-supabase-auth.admin.settings.avatar_bucket_label'),
-        help: app.translator.trans('supaflow-supabase-auth.admin.settings.avatar_bucket_help'),
-        default: 'avatars'
-      }
-    )
+    .for('forumez-supabase-auth')
     .registerPage(SupabaseSettingsPage);
+    
+  // Add translation keys
+  app.translator.addTranslations({
+    'forumez-supabase-auth': {
+      'admin': {
+        'settings': {
+          // API Section
+          'api_section_title': 'Supabase API Settings',
+          'api_section_description': 'Enter your Supabase API credentials. You can find these in your Supabase project settings.',
+          'public_url_label': 'Supabase Project URL',
+          'public_url_description': 'The URL of your Supabase project (e.g. https://your-project.supabase.co)',
+          'public_key_label': 'Public API Key',
+          'public_key_description': 'The anon/public API key from your Supabase project',
+          'private_key_label': 'Private API Key',
+          'private_key_description': 'The service_role key from your Supabase project (kept private)',
+          'test_connection_button': 'Test Connection',
+          
+          // Social Providers Section
+          'social_providers_section_title': 'Social Login Providers',
+          'social_providers_description': 'Select which social login providers you want to enable for your forum.',
+          'enabled_providers_label': 'Enabled Providers',
+          'enabled_providers_help': 'Click on a provider to enable or disable it. Make sure to also enable the provider in your Supabase authentication settings.',
+          
+          // Preview Widget
+          'preview_widget': {
+            'title': 'Social Login Preview',
+            'description': 'This is how your social login buttons will appear to users.',
+            'login_preview': 'Login Modal Preview',
+            'signup_preview': 'Sign Up Modal Preview',
+            'button_click_message': 'This is a preview. In the actual forum, this button would connect to the social provider.'
+          },
+          
+          // Security & Sync Section
+          'security_sync_section_title': 'Security & Synchronization',
+          'enable_2fa_label': 'Enable Two-Factor Authentication',
+          'enable_2fa_help': 'Allow users to secure their accounts with two-factor authentication using authenticator apps.',
+          'require_2fa_label': 'Require Two-Factor Authentication',
+          'require_2fa_help': 'Require users to set up two-factor authentication for their accounts.',
+          'sync_avatar_label': 'Synchronize User Avatars',
+          'sync_avatar_help': 'Automatically sync user profile pictures from social providers to Flarum.',
+          'sync_metadata_label': 'Synchronize User Metadata',
+          'sync_metadata_help': 'Sync additional user information from Supabase to Flarum.',
+          'avatar_bucket_label': 'Avatar Storage Bucket',
+          'avatar_bucket_help': 'The Supabase storage bucket name for user avatars.',
+          
+          // Messages
+          'save_error': 'Error saving settings: {error}',
+          'connection_success': 'Successfully connected to Supabase!',
+          'connection_error': 'Connection failed: {error}'
+        }
+      },
+      'forum': {
+        'login_with_provider': 'Login with {provider}',
+        'signup_with_provider': 'Sign up with {provider}',
+        'or_login_with': 'or login with',
+        'or_sign_up_with': 'or sign up with'
+      }
+    }
+  });
 });
