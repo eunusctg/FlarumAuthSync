@@ -1,31 +1,97 @@
-yourname-supabase-auth:
-  admin:
-    settings:
-      docs_title: "Supabase Integration Documentation"
-      docs_text: "Follow these steps to integrate Supabase authentication with your Flarum forum:"
-      docs_step1: "Create a Supabase project at https://supabase.io"
-      docs_step2: "Configure the authentication settings in your Supabase project"
-      docs_step3: "Copy your project URL and API keys to the fields above"
-      
-      public_url_label: "Supabase Project URL"
-      public_url_help: "The URL of your Supabase project (e.g., https://yourproject.supabase.co)"
-      
-      public_key_label: "Supabase Public API Key"
-      public_key_help: "The public (anon) API key from your Supabase project"
-      
-      private_key_label: "Supabase Service Role Key"
-      private_key_help: "The service_role key from your Supabase project (keep this secret!)"
-      
-      sync_avatar_label: "Sync User Avatars"
-      sync_avatar_help: "Automatically sync user avatars from Supabase user profiles"
-    
-    permissions:
-      use_supabase_auth_label: "Allow login with Supabase"
-  
+supaflow-supabase-auth:
+  # Forum translations
   forum:
-    log_in:
-      with_supabase_button: "Login with Supabase"
-    sign_up:
-      with_supabase_button: "Sign Up with Supabase"
-    errors:
-      not_configured: "Supabase authentication is not configured properly"
+    login_button: Login with Supabase
+    signup_button: Sign Up with Supabase
+    social_login:
+      github: GitHub
+      google: Google
+      facebook: Facebook
+      twitter: Twitter
+      discord: Discord
+      apple: Apple
+      login_with: Login with {provider}
+      signup_with: Sign up with {provider}
+    
+    2fa:
+      page_title: Two-Factor Authentication
+      setup_title: Set Up Two-Factor Authentication
+      setup_description: Enhance your account security with 2FA. You'll need an authenticator app.
+      verify_title: Verify Two-Factor Authentication
+      verify_description: For your security, please enter the code from your authenticator app.
+      scan_qr: 1. Scan this QR code with your authenticator app
+      enter_manually: 2. Or enter this code manually
+      verify_step: 3. Verify setup with a code from your app
+      code_placeholder: Enter 6-digit code
+      verify_button: Verify and Activate
+      success_title: Two-Factor Authentication Setup Complete
+      success_message: Two-factor authentication has been successfully set up for your account.
+      login_required: You must be logged in to set up two-factor authentication.
+      begin_setup: Begin Setup
+      important_note: Important
+      warning_items:
+        - If you lose access to your authenticator app, you won't be able to log in.
+        - Consider saving your secret key somewhere safe as a backup.
+        - You can disable 2FA from your account settings at any time.
+      having_trouble: Having trouble?
+      troubleshooting:
+        - Make sure your device's time is correct
+        - Ensure you're using the correct account in your authenticator app
+        - Wait for a new code if the current one is about to expire
+        - Contact the site administrator if you've lost access to your authenticator
+      invalid_code: Please enter a valid 6-digit verification code
+      verification_failed: Verification failed. Please try again with a new code.
+      continue: Continue to Forum
+      
+    callback:
+      processing: Processing authentication...
+      success: Successfully authenticated! Redirecting...
+      error: Authentication failed
+      no_token: No authentication token found in the URL.
+      return_login: Return to Login
+      
+    settings:
+      2fa_section: Two-Factor Authentication
+      2fa_enabled: Enabled
+      2fa_disabled: Protect your account with two-factor authentication.
+      setup_2fa: Set Up 2FA
+      disable_2fa: Disable 2FA
+      disable_confirm: Are you sure you want to disable two-factor authentication? This will make your account less secure.
+      disabled_success: Two-factor authentication has been disabled.
+      social_accounts: Connected Social Accounts
+      no_connected: No social accounts connected.
+      manage_social: Manage Social Connections
+      disconnect_confirm: Are you sure you want to disconnect your {provider} account?
+      disconnect_success: "{provider} account disconnected successfully."
+      disconnect_error: Failed to disconnect {provider} account.
+      
+  # Admin translations
+  admin:
+    permissions:
+      use_supabase_auth_label: Use Supabase Authentication
+      require_2fa_label: Require 2FA for specified user groups
+      manage_social_providers_label: Manage social login providers
+      
+    settings:
+      public_url_label: Project URL
+      public_url_help: The URL of your Supabase project (e.g., https://your-project.supabase.co)
+      public_key_label: Public API Key
+      public_key_help: The public (anon) API key from your Supabase project settings
+      private_key_label: Service Role Key (Private)
+      private_key_help: The service role API key from your Supabase project settings (kept private)
+      enable_2fa_label: Enable Two-Factor Authentication (2FA)
+      enable_2fa_help: Allow users to secure their accounts with 2FA using authenticator apps
+      require_2fa_label: Require 2FA for Sensitive Operations
+      require_2fa_help: Require 2FA verification for sensitive operations like changing email or password
+      social_providers_label: Social Login Providers
+      social_providers_help: Select which social login providers to enable for your users
+      sync_avatar_label: Sync User Avatars
+      sync_avatar_help: Automatically sync user avatars between Flarum and Supabase
+      sync_user_metadata_label: Sync User Metadata
+      sync_user_metadata_help: Sync additional user metadata between Flarum and Supabase
+      avatar_bucket_label: Avatar Storage Bucket
+      avatar_bucket_help: Name of the Supabase storage bucket where user avatars will be stored
+      test_connection: Test Connection
+      connection_success: Connection successful!
+      connection_failed: Connection failed. Please check your credentials.
+      save_settings: Save Settings

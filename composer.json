@@ -1,29 +1,60 @@
 {
-    "name": "yourname/flarum-ext-supabase-auth",
-    "description": "Supabase authentication integration for Flarum",
+    "name": "supaflow/flarum-ext-supabase-auth",
+    "description": "Enhanced Supabase authentication integration for Flarum with social login, 2FA and profile synchronization",
     "type": "flarum-extension",
     "license": "MIT",
+    "keywords": [
+        "flarum", 
+        "supabase", 
+        "authentication", 
+        "social-login", 
+        "oauth", 
+        "2fa",
+        "two-factor-authentication"
+    ],
+    "homepage": "https://github.com/supaflow/flarum-ext-supabase-auth",
+    "support": {
+        "issues": "https://github.com/supaflow/flarum-ext-supabase-auth/issues",
+        "source": "https://github.com/supaflow/flarum-ext-supabase-auth",
+        "docs": "https://github.com/supaflow/flarum-ext-supabase-auth/wiki"
+    },
     "authors": [
         {
-            "name": "Your Name",
-            "email": "your.email@example.com"
+            "name": "Supaflow Team",
+            "email": "support@supaflow.dev",
+            "homepage": "https://supaflow.dev",
+            "role": "Developer"
         }
     ],
     "require": {
-        "flarum/core": "^1.0.0"
+        "flarum/core": "^1.0.0",
+        "psr/http-client": "^1.0",
+        "guzzlehttp/guzzle": "^7.0",
+        "bacon/bacon-qr-code": "^2.0",
+        "spomky-labs/otphp": "^10.0"
     },
     "autoload": {
         "psr-4": {
-            "YourName\\SupabaseAuth\\": "src/"
+            "Supaflow\\SupabaseAuth\\": "src/"
         }
     },
     "extra": {
         "flarum-extension": {
             "title": "Supabase Authentication",
+            "category": "authentication",
             "icon": {
                 "name": "fas fa-sign-in-alt",
                 "backgroundColor": "#3ECF8E",
                 "color": "#ffffff"
+            },
+            "assets": {
+                "less": [
+                    "resources/less/forum.less",
+                    "resources/less/admin.less"
+                ],
+                "translations": [
+                    "resources/locale/en.yml"
+                ]
             }
         },
         "flarum-cli": {
@@ -44,5 +75,10 @@
                 "styleci": false
             }
         }
+    },
+    "suggest": {
+        "flarum/nicknames": "Allow users to set nicknames independent of their Supabase display names",
+        "flarum/akismet": "Block spam registrations from Supabase social logins",
+        "flarum/approval": "Require moderation for Supabase registrations"
     }
 }

@@ -1,0 +1,308 @@
+// Supabase Auth - Forum Styles
+@supabase-primary: #3ECF8E;
+@supabase-secondary: #4263EB;
+@supabase-dark: #1F1F1F;
+@supabase-light: #F8F9FA;
+
+.SupabaseAuth {
+  margin: 1.5rem 0;
+  
+  .SupabaseAuth-emailButton {
+    background-color: @supabase-primary;
+    border-color: @supabase-primary;
+    transition: all 0.2s ease;
+    
+    &:hover, &:focus {
+      background-color: darken(@supabase-primary, 5%);
+      border-color: darken(@supabase-primary, 5%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .SupabaseAuth-socialDivider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1.5rem 0;
+    
+    &:before, &:after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    span {
+      padding: 0 10px;
+      color: #777;
+      font-size: 0.9rem;
+    }
+  }
+  
+  .SupabaseAuth-socialButtons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+    
+    .Button {
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 15px;
+      font-weight: 500;
+      
+      i {
+        margin-right: 8px;
+        font-size: 1.1rem;
+      }
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+}
+
+// 2FA Setup Page
+.Supabase2FAPage {
+  max-width: 800px;
+  margin: 0 auto;
+  
+  .Supabase2FAPage-header {
+    margin-bottom: 2rem;
+    
+    h2 {
+      border-left: 4px solid @supabase-primary;
+      padding-left: 15px;
+      margin-bottom: 0.75rem;
+    }
+    
+    p {
+      color: #777;
+    }
+  }
+  
+  .Supabase2FAPage-content {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .Supabase2FAPage-error {
+    margin-bottom: 1.5rem;
+  }
+  
+  .Supabase2FAPage-alert {
+    margin-bottom: 1.5rem;
+  }
+  
+  .Supabase2FASetup {
+    .Supabase2FASetup-steps {
+      .Supabase2FASetup-step {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #eee;
+        
+        &:last-child {
+          border-bottom: none;
+          margin-bottom: 0;
+          padding-bottom: 0;
+        }
+        
+        h3 {
+          color: @supabase-dark;
+          margin-bottom: 1rem;
+          font-size: 1.1rem;
+          display: flex;
+          align-items: center;
+        }
+      }
+      
+      .Supabase2FASetup-qrCode {
+        text-align: center;
+        margin: 1rem 0;
+        padding: 1rem;
+        border: 2px dashed #ddd;
+        border-radius: 8px;
+        
+        img {
+          max-width: 200px;
+        }
+      }
+      
+      .Supabase2FASetup-secretKey {
+        display: flex;
+        align-items: center;
+        background-color: @supabase-light;
+        border-radius: 4px;
+        padding: 0.75rem;
+        margin: 1rem 0;
+        
+        code {
+          flex: 1;
+          background: none;
+          padding: 0;
+          font-family: monospace;
+          letter-spacing: 0.1em;
+        }
+        
+        .Button {
+          margin-left: 8px;
+          color: #666;
+          
+          &:hover {
+            color: @supabase-secondary;
+          }
+        }
+      }
+      
+      .Supabase2FASetup-verify {
+        .FormControl {
+          text-align: center;
+          font-size: 1.2rem;
+          letter-spacing: 0.2em;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+    
+    .Supabase2FASetup-help {
+      background-color: #f9f9f9;
+      border-left: 4px solid #eee;
+      padding: 1rem 1.5rem;
+      margin-top: 1.5rem;
+      border-radius: 4px;
+      
+      h4 {
+        color: #666;
+        margin-bottom: 0.5rem;
+      }
+      
+      ul {
+        margin: 0;
+        padding-left: 1.5rem;
+        
+        li {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  }
+  
+  .Supabase2FAVerify {
+    max-width: 350px;
+    margin: 0 auto;
+    
+    .FormControl {
+      text-align: center;
+      font-size: 1.5rem;
+      letter-spacing: 0.3em;
+      margin-bottom: 1.5rem;
+    }
+    
+    .Button {
+      width: 100%;
+    }
+  }
+  
+  .Supabase2FAVerify-help {
+    max-width: 500px;
+    margin: 2rem auto 0;
+    background-color: #f9f9f9;
+    border-left: 4px solid #eee;
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    
+    h4 {
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+    
+    ul {
+      margin: 0;
+      padding-left: 1.5rem;
+      
+      li {
+        margin-bottom: 0.5rem;
+        color: #777;
+      }
+    }
+  }
+}
+
+// Supabase Callback Page
+.SupabaseCallbackPage {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  
+  .SupabaseCallbackPage-content {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .SupabaseCallbackPage-loading {
+    padding: 2rem 0;
+    
+    p {
+      margin-top: 1rem;
+      color: #666;
+    }
+  }
+  
+  .SupabaseCallbackPage-error {
+    .Button {
+      margin-top: 1rem;
+    }
+  }
+  
+  .SupabaseCallbackPage-success {
+    padding: 1rem 0;
+  }
+}
+
+// Social accounts in settings
+.SupabaseSocialAccounts {
+  margin-bottom: 1rem;
+  
+  .SupabaseSocialAccounts-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+    
+    .SupabaseSocialAccounts-provider {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem;
+      background-color: #f9f9f9;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      
+      i {
+        font-size: 1.2rem;
+        margin-right: 10px;
+        width: 20px;
+        text-align: center;
+      }
+      
+      span {
+        flex: 1;
+      }
+    }
+  }
+  
+  .SupabaseSocialAccounts-empty {
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    color: #777;
+    text-align: center;
+  }
+}
