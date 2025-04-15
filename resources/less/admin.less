@@ -4,74 +4,211 @@
 .SocialLoginPreviewWidget {
   margin: 20px 0;
   background: #fff;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   
   &-header {
-    padding: 15px;
+    padding: 18px 20px;
     border-bottom: 1px solid #e8e8e8;
+    background-color: #f8fafc;
     
     h3 {
       margin: 0 0 5px;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: bold;
       color: #0066CC; // ForumEZ blue
     }
     
     .description {
       margin: 0;
-      color: #888;
-      font-size: 13px;
+      color: #64748b;
+      font-size: 14px;
     }
   }
   
+  // Options section
+  &-options {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e8e8e8;
+    
+    .ButtonGroup {
+      margin: 10px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .FormControl {
+      max-width: 200px;
+    }
+    
+    .Form-group {
+      margin-bottom: 15px;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  // Provider customization
+  &-customization {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e8e8e8;
+    
+    h4 {
+      font-size: 16px;
+      margin: 0 0 12px;
+      color: #334155;
+    }
+  }
+  
+  // Provider list
+  &-providers-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+    
+    .provider-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s ease;
+      
+      &.enabled {
+        background-color: #f0f9ff;
+        border-color: #bae6fd;
+      }
+      
+      &.disabled {
+        opacity: 0.6;
+        background-color: #f1f5f9;
+      }
+      
+      &:hover {
+        border-color: #0066CC;
+      }
+      
+      .provider-info {
+        display: flex;
+        align-items: center;
+        
+        .provider-icon {
+          margin-right: 10px;
+          width: 20px;
+          text-align: center;
+          color: #475569;
+        }
+        
+        .provider-name {
+          font-weight: 500;
+          color: #334155;
+        }
+      }
+      
+      .provider-actions {
+        display: flex;
+        gap: 5px;
+        
+        .Button--icon {
+          padding: 5px;
+          width: 25px;
+          height: 25px;
+          
+          &:hover {
+            background-color: #e0f2fe;
+          }
+        }
+      }
+    }
+  }
+  
+  // Preview container
   &-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    padding: 15px;
+    gap: 25px;
+    padding: 20px;
     
     @media (max-width: 768px) {
       flex-direction: column;
     }
   }
   
+  // Preview box
   &-preview-box {
     flex: 1;
     min-width: 250px;
-    padding: 15px;
-    border: 1px solid #e8e8e8;
-    border-radius: 4px;
-    background: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     
     h4 {
       margin: 0 0 15px;
-      font-size: 14px;
-      color: #333;
+      font-size: 16px;
+      color: #334155;
+      text-align: center;
+      font-weight: 500;
     }
   }
   
+  // Separator
+  &-separator {
+    position: relative;
+    margin: 15px 0;
+    text-align: center;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: #e2e8f0;
+      z-index: 1;
+    }
+    
+    span {
+      position: relative;
+      display: inline-block;
+      padding: 0 10px;
+      background-color: #fff;
+      color: #64748b;
+      font-size: 14px;
+      z-index: 2;
+    }
+  }
+  
+  // Buttons display mode
   &-buttons {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     
     .Button--social {
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      padding: 8px 15px;
-      border-radius: 4px;
+      padding: 10px 16px;
+      border-radius: 6px;
       border: none;
       cursor: pointer;
-      transition: background-color 0.2s, transform 0.1s;
+      transition: all 0.2s ease;
       text-align: left;
       font-weight: normal;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
       
       &:hover {
         transform: translateY(-1px);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
       }
       
       &:active {
@@ -79,44 +216,166 @@
       }
       
       .Button-icon {
-        margin-right: 10px;
+        margin-right: 12px;
+        font-size: 16px;
+        width: 20px;
+        text-align: center;
       }
       
       .Button-label {
         flex-grow: 1;
+        font-size: 14px;
+      }
+      
+      // Animated button
+      &.Button--animated {
+        position: relative;
+        overflow: hidden;
+        
+        &:after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            90deg, 
+            rgba(255, 255, 255, 0) 0%, 
+            rgba(255, 255, 255, 0.2) 50%, 
+            rgba(255, 255, 255, 0) 100%
+          );
+          transition: all 0.5s ease;
+        }
+        
+        &:hover:after {
+          left: 100%;
+        }
       }
     }
+  }
+  
+  // Icons display mode
+  &-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
     
-    // Provider-specific button styles
-    .Button--github { background-color: #24292e; }
-    .Button--github:hover { background-color: #000000; }
+    .Button--icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      
+      .Button-icon {
+        margin: 0;
+        font-size: 18px;
+      }
+    }
+  }
+  
+  // Dropdown display mode
+  &-dropdown {
+    margin-top: 15px;
     
-    .Button--google { background-color: #4285F4; }
-    .Button--google:hover { background-color: #3367d6; }
+    .Dropdown-menu {
+      position: relative !important;
+      display: block;
+      transform: none !important;
+      margin-top: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      
+      .Dropdown-item {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        
+        .icon {
+          margin-right: 10px;
+          width: 20px;
+          text-align: center;
+        }
+      }
+    }
+  }
+  
+  // Color picker
+  .colorPickerGroup {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
     
-    .Button--facebook { background-color: #1877F2; }
-    .Button--facebook:hover { background-color: #0b5fcc; }
+    input[type="color"] {
+      width: 40px;
+      height: 34px;
+      padding: 2px;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
     
-    .Button--twitter { background-color: #1DA1F2; }
-    .Button--twitter:hover { background-color: #0c85d0; }
+    input[type="text"] {
+      width: 100px;
+    }
+  }
+  
+  // Custom icon input
+  .customIconInput {
+    margin-top: 10px;
+  }
+  
+  // Icon selection
+  .iconSelect {
+    display: flex;
+    align-items: center;
     
-    .Button--discord { background-color: #5865F2; }
-    .Button--discord:hover { background-color: #4752c4; }
+    select {
+      margin-right: 10px;
+    }
     
-    .Button--apple { background-color: #000000; }
-    .Button--apple:hover { background-color: #333333; }
+    .iconPreview {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f1f5f9;
+      border-radius: 4px;
+      
+      .icon {
+        font-size: 16px;
+      }
+    }
+  }
+  
+  // Button preview
+  .buttonPreview {
+    margin: 15px 0;
     
-    .Button--linkedin { background-color: #0A66C2; }
-    .Button--linkedin:hover { background-color: #084e96; }
-    
-    .Button--slack { background-color: #4A154B; }
-    .Button--slack:hover { background-color: #2f0e30; }
-    
-    .Button--spotify { background-color: #1DB954; }
-    .Button--spotify:hover { background-color: #169c46; }
-    
-    .Button--twitch { background-color: #9146FF; }
-    .Button--twitch:hover { background-color: #7b38d8; }
+    .Button {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      border-radius: 6px;
+      
+      .Button-icon {
+        margin-right: 10px;
+      }
+    }
   }
 }
 

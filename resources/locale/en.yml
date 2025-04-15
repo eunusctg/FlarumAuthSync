@@ -27,6 +27,36 @@ forumez-supabase-auth:
         signup_preview: Sign Up Modal Preview
         button_click_message: This is a preview. In the actual forum, this button would connect to the social provider.
       
+      # Display Options
+      display_options:
+        title: Display Mode
+        buttons_mode: Buttons
+        icons_mode: Icons
+        dropdown_mode: Dropdown
+        separator_text: Separator Text
+        auto_detect_colors: Auto-detect colors from provider
+        animate_buttons: Animate buttons on hover
+        use_color_gradients: Use color gradients for buttons
+      
+      # Provider Customization
+      provider_customization:
+        title: Customize {provider}
+        manage_providers: Manage Social Providers
+        customize: Customize
+        display_name: Display Name
+        display_name_help: The name to show on the button
+        icon: Icon
+        custom_icon_help: Enter a custom Font Awesome icon class
+        button_color: Button Color
+        button_text_color: Text Color
+        button_preview: Button Preview
+        show_on_login: Show on login page
+        show_on_signup: Show on signup page
+        priority: Display Priority
+        priority_help: Higher numbers appear first (default: 0)
+        reset_defaults: Reset to Defaults
+        save: Save Changes
+      
       # Security & Sync Section
       security_sync_section_title: Security & Synchronization
       enable_2fa_label: Enable Two-Factor Authentication

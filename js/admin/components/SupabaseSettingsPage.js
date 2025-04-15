@@ -145,7 +145,10 @@ export default class SupabaseSettingsPage extends ExtensionPage {
               </div>
               
               {/* Social Login Preview Widget */}
-              <SocialLoginPreviewWidget />
+              <SocialLoginPreviewWidget 
+                settings={this.settings}
+                onSettingChange={this.onSettingChange.bind(this)} 
+              />
             </div>
             
             {/* Security & Sync Settings */}
@@ -355,6 +358,20 @@ export default class SupabaseSettingsPage extends ExtensionPage {
   }
 
   /**
+   * Handle setting change from components
+   * 
+   * @param {String} key
+   * @param {String} value
+   */
+  onSettingChange(key, value) {
+    // Store the value in app.data.settings for immediate use
+    app.data.settings[key] = value;
+    
+    // Also store in our local settings object
+    this.settings[key] = value;
+  }
+
+  /**
    * Save settings when form is submitted
    * 
    * @param {Event} e
@@ -380,6 +397,14 @@ export default class SupabaseSettingsPage extends ExtensionPage {
       'supabase.avatarBucket': this.settings['supabase.avatarBucket'],
       'supabase.socialProviders': JSON.stringify(this.settings['supabase.socialProviders'])
     };
+    
+    // Add preview widget settings
+    settingsToSave['supabase.socialButtonsDisplayMode'] = app.data.settings['supabase.socialButtonsDisplayMode'] || 'buttons';
+    settingsToSave['supabase.socialSeparatorText'] = app.data.settings['supabase.socialSeparatorText'] || 'or';
+    settingsToSave['supabase.autoDetectColors'] = app.data.settings['supabase.autoDetectColors'] || '0';
+    settingsToSave['supabase.animateButtons'] = app.data.settings['supabase.animateButtons'] || '1';
+    settingsToSave['supabase.useColorGradients'] = app.data.settings['supabase.useColorGradients'] || '0';
+    settingsToSave['supabase.providerCustomizations'] = app.data.settings['supabase.providerCustomizations'] || '{}';
     
     // Save settings to database
     saveSettings(settingsToSave)
