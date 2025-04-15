@@ -46,7 +46,7 @@ A comprehensive Supabase authentication integration for Flarum with advanced soc
 ## Installation
 
 ```bash
-composer require forumez/supabase-auth
+composer require eunusctg/supabase-auth
 ```
 
 ## Configuration
@@ -122,7 +122,7 @@ The extension is designed to be extendable through Flarum's extension system. Yo
 ### Getting Help
 
 If you encounter any issues, please:
-1. Check the [GitHub Issues](https://github.com/forumez/supabase-auth/issues) page
+1. Check the [GitHub Issues](https://github.com/eunusctg/supabase-auth/issues) page
 2. Create a new issue with detailed information if yours isn't already reported
 
 ## License

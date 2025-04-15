@@ -1,5 +1,5 @@
 {
-    "name": "forumez/supabase-auth",
+    "name": "eunusctg/supabase-auth",
     "description": "Enhanced Supabase authentication integration for Flarum with social login, 2FA and profile synchronization",
     "type": "flarum-extension",
     "license": "MIT",
@@ -12,17 +12,17 @@
         "2fa",
         "two-factor-authentication"
     ],
-    "homepage": "https://github.com/forumez/supabase-auth",
+    "homepage": "https://github.com/eunusctg/supabase-auth",
     "support": {
-        "issues": "https://github.com/forumez/supabase-auth/issues",
-        "source": "https://github.com/forumez/supabase-auth",
-        "docs": "https://github.com/forumez/supabase-auth/wiki"
+        "issues": "https://github.com/eunusctg/supabase-auth/issues",
+        "source": "https://github.com/eunusctg/supabase-auth",
+        "docs": "https://github.com/eunusctg/supabase-auth/wiki"
     },
     "authors": [
         {
-            "name": "ForumEZ Team",
-            "email": "support@forumez.com",
-            "homepage": "https://forumez.com",
+            "name": "Eunus CTG",
+            "email": "contact@eunusctg.com",
+            "homepage": "https://eunusctg.com",
             "role": "Developer"
         }
     ],
@@ -35,7 +35,7 @@
     },
     "autoload": {
         "psr-4": {
-            "ForumEZ\\SupabaseAuth\\": "src/"
+            "EunusCTG\\SupabaseAuth\\": "src/"
         }
     },
     "extra": {
