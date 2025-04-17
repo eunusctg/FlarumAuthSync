@@ -1,5 +1,7 @@
 {
     "name": "eunusctg/supabase-auth",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "description": "Enhanced Supabase authentication integration for Flarum with social login, 2FA and profile synchronization",
     "type": "flarum-extension",
     "license": "MIT",
