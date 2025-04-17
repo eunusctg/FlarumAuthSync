@@ -33,7 +33,7 @@
         "psr/http-client": "^1.0",
         "guzzlehttp/guzzle": "^7.0",
         "bacon/bacon-qr-code": "^3.0",
-        "spomky-labs/otphp": "^10.0"
+        "spomky-labs/otphp": "^11.3"
     },
     "autoload": {
         "psr-4": {
